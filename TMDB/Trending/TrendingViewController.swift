@@ -23,11 +23,15 @@ class TrendingViewController: UIViewController {
         trendingCollectionView.delegate = self
         
         trendingCollectionView.register(UINib(nibName: TrendingCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: TrendingCollectionViewCell.reuseIdentifier)
+        
+        print("CollectionView-masksToBounds", trendingCollectionView.layer.masksToBounds)
+        print("CollectionView-clipsToBounds", trendingCollectionView.clipsToBounds)
 
         configureCollectionViewLayout()
         
         fetchData()
     }
+    
     
     func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
@@ -36,7 +40,7 @@ class TrendingViewController: UIViewController {
         let verticalInset: CGFloat = 20
         
         layout.sectionInset = UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
-        layout.minimumLineSpacing = 40
+        layout.minimumLineSpacing = 48
 //        layout.minimumInteritemSpacing  // 열이 1 개 이므로 생략
         
         let width = UIScreen.main.bounds.width - (horizontalInset * 2)
