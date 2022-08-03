@@ -13,12 +13,36 @@ import SwiftyJSON
 
 class TrendingViewController: UIViewController {
     
+    @IBOutlet weak var trendingCollectionView: UICollectionView!
     var mediaArray: [MediaModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        trendingCollectionView.dataSource = self
+        trendingCollectionView.delegate = self
+        
+        trendingCollectionView.register(UINib(nibName: TrendingCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: TrendingCollectionViewCell.reuseIdentifier)
 
+        configureCollectionViewLayout()
+        
         fetchData()
+    }
+    
+    func configureCollectionViewLayout() {
+        let layout = UICollectionViewFlowLayout()
+        let spacing: CGFloat = UIScreen.main.bounds.width * 0.02
+        let horizontalInset: CGFloat = 20
+        let verticalInset: CGFloat = 20
+        
+        layout.sectionInset = UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
+        layout.minimumLineSpacing = 40
+//        layout.minimumInteritemSpacing  // 열이 1 개 이므로 생략
+        
+        let width = UIScreen.main.bounds.width - (horizontalInset * 2)
+        layout.itemSize = CGSize(width: width, height: width * 1.15)
+        
+        trendingCollectionView.collectionViewLayout = layout
     }
     
     func fetchData() {
@@ -36,8 +60,32 @@ class TrendingViewController: UIViewController {
 //                    print("JSON: \(json)")
                     
                     // json["results"].arrayValue는 배열, 배열 내의 요소는 모두 딕셔너리
-                    print(json["results"])
+//                    print(json["results"])  // .arrayValue 하지 않아도 되는 이유?
+                    
+                    for result in json["results"].arrayValue {//
+                        let title = result["title"].stringValue
+                        let mediaType = result["media_type"].stringValue
+                        let backdropPath = result["backdrop_path"].stringValue
+//                        guard let genreIDs = result["genre_ids"].arrayValue as? [Int] else {
+//                            print("실패")
+//                            return
+//                        }
+//                        print(genreIDs)
+//                        print(type(of: genreIDs))
+                        let genreID = result["genre_ids"][0].intValue
+                        print("genreID", genreID)
+                        let releaseDate = result["release_date"].stringValue
+                        
+                        let voteAverage = result["vote_average"].doubleValue
+                        let overview = result["overview"].stringValue
 
+                        let mediaModel = MediaModel(title: title, mediaType: mediaType, backdropPath: backdropPath, genreID: genreID, releaseDate: releaseDate, voteAverage: voteAverage, overview: overview)
+                        self.mediaArray.append(mediaModel)
+
+                        print(self.mediaArray.count)
+//
+                        self.trendingCollectionView.reloadData()
+                    }
                     
                 case .failure(let error):
                     print(error)
@@ -45,4 +93,24 @@ class TrendingViewController: UIViewController {
         }
         print("fetchData ending")
     }
+}
+
+
+extension TrendingViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return mediaArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseIdentifier, for: indexPath) as? TrendingCollectionViewCell else {
+            print("Cannot find TrendingCollectionViewCell")
+            return UICollectionViewCell()
+        }
+        
+        cell.configureCell(data: mediaArray[indexPath.item])
+        
+        return cell
+    }
+    
+    
 }
