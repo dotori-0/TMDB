@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A0EC35E289BDD98005DC884 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EC35D289BDD98005DC884 /* DetailsViewController.swift */; };
+		0A0EC362289BF5D2005DC884 /* OverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EC360289BF5D2005DC884 /* OverviewTableViewCell.swift */; };
+		0A0EC363289BF5D2005DC884 /* OverviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0EC361289BF5D2005DC884 /* OverviewTableViewCell.xib */; };
 		0A130A132899F72D00B1CCB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A130A122899F72D00B1CCB5 /* AppDelegate.swift */; };
 		0A130A152899F72D00B1CCB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A130A142899F72D00B1CCB5 /* SceneDelegate.swift */; };
 		0A130A1A2899F72D00B1CCB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A130A182899F72D00B1CCB5 /* Main.storyboard */; };
@@ -27,10 +29,14 @@
 		0A62E545289ABCFC00951038 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62E544289ABCFC00951038 /* UIViewController+Extension.swift */; };
 		0A62E547289ABD4D00951038 /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62E546289ABD4D00951038 /* UICollectionViewCell+Extension.swift */; };
 		0A62E54A289AC7FE00951038 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0A62E549289AC7FE00951038 /* Kingfisher */; };
+		0A8F41B3289BF84400AC4B96 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F41B2289BF84400AC4B96 /* UITableViewCell+Extension.swift */; };
+		0A8F41B5289C015A00AC4B96 /* CustomTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F41B4289C015A00AC4B96 /* CustomTableViewCellDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A0EC35D289BDD98005DC884 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		0A0EC360289BF5D2005DC884 /* OverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTableViewCell.swift; sourceTree = "<group>"; };
+		0A0EC361289BF5D2005DC884 /* OverviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverviewTableViewCell.xib; sourceTree = "<group>"; };
 		0A130A0F2899F72D00B1CCB5 /* TMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A130A122899F72D00B1CCB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A130A142899F72D00B1CCB5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +55,8 @@
 		0A62E542289ABCCF00951038 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		0A62E544289ABCFC00951038 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		0A62E546289ABD4D00951038 /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
+		0A8F41B2289BF84400AC4B96 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		0A8F41B4289C015A00AC4B96 /* CustomTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +73,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A0EC35F289BF58E005DC884 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				0A0EC35D289BDD98005DC884 /* DetailsViewController.swift */,
+				0A0EC360289BF5D2005DC884 /* OverviewTableViewCell.swift */,
+				0A0EC361289BF5D2005DC884 /* OverviewTableViewCell.xib */,
+				0A8F41B4289C015A00AC4B96 /* CustomTableViewCellDelegate.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		0A130A062899F72D00B1CCB5 = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +142,7 @@
 				0A62E535289AB69800951038 /* TrendingViewController.swift */,
 				0A62E530289AB63A00951038 /* TrendingCollectionViewCell.swift */,
 				0A62E531289AB63A00951038 /* TrendingCollectionViewCell.xib */,
-				0A0EC35D289BDD98005DC884 /* DetailsViewController.swift */,
+				0A0EC35F289BF58E005DC884 /* Details */,
 				0A62E53D289AB9F600951038 /* Data */,
 			);
 			path = Trending;
@@ -142,6 +161,7 @@
 			children = (
 				0A62E544289ABCFC00951038 /* UIViewController+Extension.swift */,
 				0A62E546289ABD4D00951038 /* UICollectionViewCell+Extension.swift */,
+				0A8F41B2289BF84400AC4B96 /* UITableViewCell+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -224,6 +244,7 @@
 			files = (
 				0A130A272899F7D300B1CCB5 /* .gitignore in Resources */,
 				0A62E533289AB63A00951038 /* TrendingCollectionViewCell.xib in Resources */,
+				0A0EC363289BF5D2005DC884 /* OverviewTableViewCell.xib in Resources */,
 				0A130A1F2899F72D00B1CCB5 /* LaunchScreen.storyboard in Resources */,
 				0A130A1C2899F72D00B1CCB5 /* Assets.xcassets in Resources */,
 				0A130A1A2899F72D00B1CCB5 /* Main.storyboard in Resources */,
@@ -237,12 +258,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0EC362289BF5D2005DC884 /* OverviewTableViewCell.swift in Sources */,
 				0A62E545289ABCFC00951038 /* UIViewController+Extension.swift in Sources */,
 				0A62E547289ABD4D00951038 /* UICollectionViewCell+Extension.swift in Sources */,
 				0A130A332899FAAB00B1CCB5 /* Example.swift in Sources */,
 				0A130A132899F72D00B1CCB5 /* AppDelegate.swift in Sources */,
 				0A62E532289AB63A00951038 /* TrendingCollectionViewCell.swift in Sources */,
 				0A130A152899F72D00B1CCB5 /* SceneDelegate.swift in Sources */,
+				0A8F41B5289C015A00AC4B96 /* CustomTableViewCellDelegate.swift in Sources */,
+				0A8F41B3289BF84400AC4B96 /* UITableViewCell+Extension.swift in Sources */,
 				0A130A2B2899F88D00B1CCB5 /* APIKey.swift in Sources */,
 				0A130A2F2899F9B800B1CCB5 /* Constant.swift in Sources */,
 				0A62E53F289ABA0400951038 /* MediaModel.swift in Sources */,

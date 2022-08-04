@@ -17,8 +17,21 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var detailsTableView: UITableView!
     
     var media: MediaModel?
+    
+//    enum isFolded {
+//        static var value = true {
+//            willSet {
+//                reloadSection()
+//            }
+//        }
+//    }
+//
+//    func reloadSection() {
+//        detailsTableView.reloadSections(IndexSet(0), with: true)
+//    }
     
     
     override func viewDidLoad() {
@@ -28,21 +41,16 @@ class DetailsViewController: UIViewController {
 //            print("Cannot find media.")
 //            return
 //        }
-//        checkMedia()
+        
+        detailsTableView.dataSource = self
+        detailsTableView.delegate = self
+        detailsTableView.register(UINib(nibName: OverviewTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: OverviewTableViewCell.reuseIdentifier)
+        detailsTableView.rowHeight = UITableView.automaticDimension
+
         fetchDetails()
 //        configureHeaderView()
     }
     
-    
-//    func checkMedia() {
-//        if media == nil {
-//            print("Cannot find media")
-//        } else {
-//            media = media!
-//        }
-//    }
-    
-
     func configureHeaderView() {
         titleLabel.text = media?.title
         titleLabel.textColor = .white
@@ -88,5 +96,65 @@ class DetailsViewController: UIViewController {
                     print(error)
             }
         }
+    }
+}
+
+
+extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+            case 0: return 1
+            case 1: return 0
+            case 2: return 0
+            default:
+                print("Error in numberOfRowsInSection")
+                return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+            case 0: return "Overview"
+            case 1: return "Cast"
+            case 2: return "Crew"
+            default:
+                print("Error in titleForHeaderInSection")
+                return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UIScreen.main.bounds.height / 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewTableViewCell.reuseIdentifier) as? OverviewTableViewCell else {
+                print("Cannot find OverviewTableViewCell")
+                return UITableViewCell()
+            }
+            
+            cell.overview = media?.overview
+            cell.configureOverviewLabel()
+            cell.configureFoldButton()
+            
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
+}
+
+
+extension DetailsViewController: CustomTableViewCellDelegate {
+    func foldButtonClicked() {
+        print("Delegate")
+        detailsTableView.reloadRows(at: [[0, 0]], with: .fade)
+        detailsTableView.reloadData()
     }
 }
