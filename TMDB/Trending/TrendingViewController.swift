@@ -14,7 +14,12 @@ import SwiftyJSON
 class TrendingViewController: UIViewController {
     
     @IBOutlet weak var trendingCollectionView: UICollectionView!
+    
     var mediaArray: [MediaModel] = []
+    
+    var page = 1
+    var offsetLimit: CGFloat = 8000
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +61,7 @@ class TrendingViewController: UIViewController {
     func fetchData() {
         print("fetchData starting")
 //        let text = "과자".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!  // 옵셔널이기 때문에 타입 어노테이션이나 가드구문 등으로 처리
-        let url = Endpoint.trendingURL + APIKey.TMDB
+        let url = Endpoint.trendingURL + APIKey.TMDB + "&page=\(page)"
         
 //        let headers: HTTPHeaders = ["X-Naver-Client-Id": APIKey.NAVER_ID, "X-Naver-Client-Secret": APIKey.NAVER_SECRET]
 //        let parameters = [
@@ -82,7 +87,7 @@ class TrendingViewController: UIViewController {
 //                        print(genreIDs)
 //                        print(type(of: genreIDs))
                         let genreID = result["genre_ids"][0].intValue
-                        print("genreID", genreID)
+//                        print("genreID", genreID)
                         let releaseDate = result["release_date"].stringValue
                         
                         let voteAverage = result["vote_average"].doubleValue
@@ -91,7 +96,7 @@ class TrendingViewController: UIViewController {
                         let mediaModel = MediaModel(title: title, mediaType: mediaType, id: id, backdropPath: backdropPath, posterPath: nil, genreID: genreID, releaseDate: releaseDate, voteAverage: voteAverage, overview: overview)
                         self.mediaArray.append(mediaModel)
 
-                        print(self.mediaArray.count)
+//                        print(self.mediaArray.count)
 //
                         self.trendingCollectionView.reloadData()
                     }
@@ -130,5 +135,15 @@ extension TrendingViewController: UICollectionViewDataSource, UICollectionViewDe
         vc.media = mediaArray[indexPath.item]
         
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset)
+        if scrollView.contentOffset.y > offsetLimit {
+            page += 1
+            offsetLimit += 8000
+            fetchData()
+        }
     }
 }

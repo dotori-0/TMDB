@@ -23,13 +23,13 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     
     func configureCell(data: MediaModel) {
         
-        print("🍑")
-        print(layer.masksToBounds)  // true
+//        print("🍑")
+//        print(layer.masksToBounds)  // true
         layer.masksToBounds = false
         
 //        cell.layer.masksToBounds  // Cannot find 'cell' in scope
 //        view.layer.masksToBounds  // Cannot find 'view' in scope
-        print("😇", contentView.layer.masksToBounds)  // false
+//        print("😇", contentView.layer.masksToBounds)  // false
         
         releaseDateLabel.text = data.releaseDate
         releaseDateLabel.textColor = .darkGray
@@ -61,8 +61,8 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     }
     
     func configureShadowForContainerView() {
-        print("🐶")
-        print(containerView.layer.masksToBounds)  // false
+//        print("🐶")
+//        print(containerView.layer.masksToBounds)  // false
         containerView.layer.shadowColor = UIColor.gray.cgColor
         containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
         containerView.layer.shadowRadius = 15
