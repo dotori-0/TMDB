@@ -10,7 +10,9 @@ import Foundation
 struct MediaModel {
     let title: String
     let mediaType: String
+    let id: Int
     let backdropPath: String
+    let posterPath: String?
 //    let genreIDs: [Int]
     let genreID: Int
     let releaseDate: String

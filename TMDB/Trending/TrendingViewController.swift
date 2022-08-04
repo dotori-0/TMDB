@@ -49,6 +49,7 @@ class TrendingViewController: UIViewController {
         trendingCollectionView.collectionViewLayout = layout
     }
     
+    
     func fetchData() {
         print("fetchData starting")
 //        let text = "과자".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!  // 옵셔널이기 때문에 타입 어노테이션이나 가드구문 등으로 처리
@@ -69,6 +70,7 @@ class TrendingViewController: UIViewController {
                     for result in json["results"].arrayValue {//
                         let title = result["title"].stringValue
                         let mediaType = result["media_type"].stringValue
+                        let id = result["id"].intValue
                         let backdropPath = result["backdrop_path"].stringValue
 //                        guard let genreIDs = result["genre_ids"].arrayValue as? [Int] else {
 //                            print("실패")
@@ -83,7 +85,7 @@ class TrendingViewController: UIViewController {
                         let voteAverage = result["vote_average"].doubleValue
                         let overview = result["overview"].stringValue
 
-                        let mediaModel = MediaModel(title: title, mediaType: mediaType, backdropPath: backdropPath, genreID: genreID, releaseDate: releaseDate, voteAverage: voteAverage, overview: overview)
+                        let mediaModel = MediaModel(title: title, mediaType: mediaType, id: id, backdropPath: backdropPath, posterPath: nil, genreID: genreID, releaseDate: releaseDate, voteAverage: voteAverage, overview: overview)
                         self.mediaArray.append(mediaModel)
 
                         print(self.mediaArray.count)
@@ -116,5 +118,14 @@ extension TrendingViewController: UICollectionViewDataSource, UICollectionViewDe
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: DetailsViewController.reuseIdentifier) as? DetailsViewController else {
+            print("Cannot find DetailsViewController")
+            return
+        }
+        
+        vc.media = mediaArray[indexPath.item]
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

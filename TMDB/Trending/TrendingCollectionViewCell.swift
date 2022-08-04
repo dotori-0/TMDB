@@ -58,8 +58,6 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         showDetailsLabel.font = .systemFont(ofSize: 13)
         
         configureShadowForContainerView()
-        
-//        showDetailsLabel.font
     }
     
     func configureShadowForContainerView() {
