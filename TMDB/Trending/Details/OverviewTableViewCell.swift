@@ -11,32 +11,37 @@ class OverviewTableViewCell: UITableViewCell {
     var delegate: CustomTableViewCellDelegate?
 
     @IBOutlet weak var overviewLabel: UILabel!
-    @IBOutlet weak var foldButton: UIButton!
+    @IBOutlet weak var showAndHideButton: UIButton!
     
     var overview: String?
-    var isFolded = true
+    var isCollapsed = true
     
     
     func configureOverviewLabel() {
+        overviewLabel.sizeToFit()
         overviewLabel.numberOfLines = 2
         overviewLabel.text = overview ?? "Could not fetch overview data. Please try again."
     }
     
-    func configureFoldButton() {
-        foldButton.setTitle("", for: .normal)
-        foldButton.tintColor = .label
-        configureFoldButtonImage()
+    func configureButton() {
+        showAndHideButton.setTitle("", for: .normal)
+        showAndHideButton.tintColor = .label
+        configureButtonImage()
     }
     
-    func configureFoldButtonImage() {
-        foldButton.setImage(UIImage(systemName: isFolded ? "chevron.down" : "chevron.up"), for: .normal)
+    func configureButtonImage() {
+        showAndHideButton.setImage(UIImage(systemName: isCollapsed ? "chevron.down" : "chevron.up"), for: .normal)
+    }
+    
+    func configureOverviewLabelLines() {
+        overviewLabel.numberOfLines = isCollapsed ? 2 : 0
     }
     
     @IBAction func foldButtonClicked(_ sender: UIButton) {
         print(#function)
-        overviewLabel.numberOfLines = 0
-        isFolded.toggle()
-        configureFoldButtonImage()
-        delegate?.foldButtonClicked()
+        isCollapsed.toggle()
+        configureButtonImage()
+        configureOverviewLabelLines()
+        delegate?.showAndHideButtonClicked()
     }
 }

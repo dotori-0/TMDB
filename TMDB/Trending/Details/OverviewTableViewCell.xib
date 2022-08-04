@@ -47,8 +47,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="foldButton" destination="N2J-pv-tth" id="qKh-8h-p6O"/>
                 <outlet property="overviewLabel" destination="NgJ-Gj-BhK" id="5vY-EY-bjo"/>
+                <outlet property="showAndHideButton" destination="N2J-pv-tth" id="qKh-8h-p6O"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="100.11160714285714"/>
         </tableViewCell>

@@ -50,7 +50,9 @@ class DetailsViewController: UIViewController {
         detailsTableView.delegate = self
         detailsTableView.register(UINib(nibName: OverviewTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: OverviewTableViewCell.reuseIdentifier)
         detailsTableView.register(UINib(nibName: CreditsTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: CreditsTableViewCell.reuseIdentifier)
+        
         detailsTableView.rowHeight = UITableView.automaticDimension
+//        detailsTableView.estimatedRowHeight = 180
 
         fetchDetails()
 //        configureHeaderView()
@@ -182,8 +184,13 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section != 0 {
             return 100
         } else {
+//            return UITableView.automaticDimension
             return 180
         }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -197,7 +204,7 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
             
             cell.overview = media?.overview
             cell.configureOverviewLabel()
-            cell.configureFoldButton()
+            cell.configureButton()
             
             return cell
         } else if section == 1 {
@@ -226,7 +233,7 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
 
 
 extension DetailsViewController: CustomTableViewCellDelegate {
-    func foldButtonClicked() {
+    func showAndHideButtonClicked() {
         print("Delegate")
         detailsTableView.reloadRows(at: [[0, 0]], with: .fade)
         detailsTableView.reloadData()

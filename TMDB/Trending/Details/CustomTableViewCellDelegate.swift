@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CustomTableViewCellDelegate {
-    func foldButtonClicked()
+    func showAndHideButtonClicked()
 }
