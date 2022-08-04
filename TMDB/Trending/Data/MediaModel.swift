@@ -12,7 +12,7 @@ struct MediaModel {
     let mediaType: String
     let id: Int
     let backdropPath: String
-    let posterPath: String?
+    var posterPath: String?
 //    let genreIDs: [Int]
     let genreID: Int
     let releaseDate: String

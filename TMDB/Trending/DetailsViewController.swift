@@ -28,22 +28,39 @@ class DetailsViewController: UIViewController {
 //            print("Cannot find media.")
 //            return
 //        }
-        
+//        checkMedia()
         fetchDetails()
-        configureHeaderView()
+//        configureHeaderView()
     }
+    
+    
+//    func checkMedia() {
+//        if media == nil {
+//            print("Cannot find media")
+//        } else {
+//            media = media!
+//        }
+//    }
     
 
     func configureHeaderView() {
-        guard let media = self.media != nil ? self.media : nil else {  // 맞는 구문인지..? data가 nil일 경우 guard let으로 처리하는 방법?
-            print("Cannot find media.")
-            return
-        }
+        titleLabel.text = media?.title
+        titleLabel.textColor = .white
+        titleLabel.font = .boldSystemFont(ofSize: 28)
+        titleLabel.layer.shadowColor = UIColor.black.cgColor
+        titleLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
+        titleLabel.layer.shadowRadius = 10
+        titleLabel.layer.shadowOpacity = 1.0
         
-        let url = URL(string: Endpoint.configurationURL + media.backdropPath)
-        backdropImageView.kf.setImage(with: url)
+        let backdropURL = URL(string: Endpoint.configurationURL + (media?.backdropPath)!)  // 강제해제 하지 않기?
+        backdropImageView.kf.setImage(with: backdropURL)
         backdropImageView.contentMode = .scaleAspectFill
+        
+        let posterURL = URL(string: Endpoint.configurationURL + (media?.posterPath)!)  // 강제해제 하지 않기?
+        posterImageView.kf.setImage(with: posterURL)
+        posterImageView.contentMode = .scaleAspectFill
     }
+    
     
     func fetchDetails() {
         guard let media = self.media != nil ? self.media : nil else {  // 맞는 구문인지..? data가 nil일 경우 guard let으로 처리하는 방법?
@@ -51,9 +68,7 @@ class DetailsViewController: UIViewController {
             return
         }
         
-        var url: String
-        
-        url = ("\(Endpoint.detailsURL)\(media.mediaType)/\(media.id)?api_key=\(APIKey.TMDB)")
+        let url = "\(Endpoint.detailsURL)\(media.mediaType)/\(media.id)?api_key=\(APIKey.TMDB)"
         // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
         // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
         
@@ -63,33 +78,11 @@ class DetailsViewController: UIViewController {
                     let json = JSON(value)
                     print("JSON: \(json)")
                     
-                    // json["results"].arrayValue는 배열, 배열 내의 요소는 모두 딕셔너리
-//                    print(json["results"])  // .arrayValue 하지 않아도 되는 이유?
+                    let posterPath = json["poster_path"].stringValue
                     
-//                    for result in json["results"].arrayValue {//
-//                        let title = result["title"].stringValue
-//                        let mediaType = result["media_type"].stringValue
-//                        let backdropPath = result["backdrop_path"].stringValue
-////                        guard let genreIDs = result["genre_ids"].arrayValue as? [Int] else {
-////                            print("실패")
-////                            return
-////                        }
-////                        print(genreIDs)
-////                        print(type(of: genreIDs))
-//                        let genreID = result["genre_ids"][0].intValue
-//                        print("genreID", genreID)
-//                        let releaseDate = result["release_date"].stringValue
+                    self.media?.posterPath = posterPath
 //
-//                        let voteAverage = result["vote_average"].doubleValue
-//                        let overview = result["overview"].stringValue
-//
-//                        let mediaModel = MediaModel(title: title, mediaType: mediaType, backdropPath: backdropPath, genreID: genreID, releaseDate: releaseDate, voteAverage: voteAverage, overview: overview)
-//                        self.mediaArray.append(mediaModel)
-//
-//                        print(self.mediaArray.count)
-////
-//                        self.trendingCollectionView.reloadData()
-//                    }
+                    self.configureHeaderView()
                     
                 case .failure(let error):
                     print(error)

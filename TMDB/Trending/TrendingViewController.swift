@@ -67,9 +67,9 @@ class TrendingViewController: UIViewController {
                     // json["results"].arrayValue는 배열, 배열 내의 요소는 모두 딕셔너리
 //                    print(json["results"])  // .arrayValue 하지 않아도 되는 이유?
                     
-                    for result in json["results"].arrayValue {//
-                        let title = result["title"].stringValue
+                    for result in json["results"].arrayValue {
                         let mediaType = result["media_type"].stringValue
+                        let title = mediaType == "movie" ? result["title"].stringValue : result["name"].stringValue
                         let id = result["id"].intValue
                         let backdropPath = result["backdrop_path"].stringValue
 //                        guard let genreIDs = result["genre_ids"].arrayValue as? [Int] else {
