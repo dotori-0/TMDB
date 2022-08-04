@@ -19,6 +19,9 @@ class TrendingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.backButtonTitle = ""
+//        navigationItem.titleView?.tintColor = .black
+        
         trendingCollectionView.dataSource = self
         trendingCollectionView.delegate = self
         
@@ -58,7 +61,7 @@ class TrendingViewController: UIViewController {
 //        let headers: HTTPHeaders = ["X-Naver-Client-Id": APIKey.NAVER_ID, "X-Naver-Client-Secret": APIKey.NAVER_SECRET]
 //        let parameters = [
         
-        AF.request(url, method: .get).validate(statusCode: 200..<400).responseJSON { response in
+        AF.request(url, method: .get).validate(statusCode: 200..<400).responseData { response in
             switch response.result {
                 case .success(let value):
                     let json = JSON(value)

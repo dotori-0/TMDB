@@ -20,6 +20,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var detailsTableView: UITableView!
     
     var media: MediaModel?
+    var casts: [CastModel] = []
+    var crew: [CastModel] = []
     
 //    enum isFolded {
 //        static var value = true {
@@ -41,10 +43,13 @@ class DetailsViewController: UIViewController {
 //            print("Cannot find media.")
 //            return
 //        }
+        title = "상세 정보"
+        navigationItem.backButtonTitle = "nil"
         
         detailsTableView.dataSource = self
         detailsTableView.delegate = self
         detailsTableView.register(UINib(nibName: OverviewTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: OverviewTableViewCell.reuseIdentifier)
+        detailsTableView.register(UINib(nibName: CreditsTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: CreditsTableViewCell.reuseIdentifier)
         detailsTableView.rowHeight = UITableView.automaticDimension
 
         fetchDetails()
@@ -76,11 +81,12 @@ class DetailsViewController: UIViewController {
             return
         }
         
-        let url = "\(Endpoint.detailsURL)\(media.mediaType)/\(media.id)?api_key=\(APIKey.TMDB)"
+        /// Details
+        let detailsURL = "\(Endpoint.detailsURL)\(media.mediaType)/\(media.id)?api_key=\(APIKey.TMDB)"
         // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
         // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
         
-        AF.request(url, method: .get).validate(statusCode: 200..<400).responseData { response in
+        AF.request(detailsURL, method: .get).validate(statusCode: 200..<400).responseData { response in
             switch response.result {
                 case .success(let value):
                     let json = JSON(value)
@@ -91,6 +97,47 @@ class DetailsViewController: UIViewController {
                     self.media?.posterPath = posterPath
 //
                     self.configureHeaderView()
+                    
+                case .failure(let error):
+                    print(error)
+            }
+        }
+        
+        
+        /// Credits
+        let creditsURL = "\(Endpoint.detailsURL)\(media.mediaType)/\(media.id)/credits?api_key=\(APIKey.TMDB)"
+        // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
+        // https://api.themoviedb.org/3/tv/{tv_id}/credits?api_key=<<api_key>>&language=en-US
+        
+        AF.request(creditsURL, method: .get).validate(statusCode: 200..<400).responseData { response in
+            switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    
+                    for cast in json["cast"].arrayValue {
+                        let profilePath = cast["profile_path"].stringValue
+                        let name = cast["name"].stringValue
+                        let character = cast["character"].stringValue
+                        
+                        let cast = CastModel(profilePath: profilePath, name: name, character: character)
+                        
+                        self.casts.append(cast)
+                        
+                        self.detailsTableView.reloadData()
+                    }
+                    
+                    for crew in json["crew"].arrayValue {
+                        let profilePath = crew["profile_path"].stringValue
+                        let name = crew["name"].stringValue
+                        let job = crew["job"].stringValue
+                        
+                        let crew = CastModel(profilePath: profilePath, name: name, character: job)
+                        
+                        self.crew.append(crew)
+                        
+                        self.detailsTableView.reloadData()
+                    }
                     
                 case .failure(let error):
                     print(error)
@@ -108,8 +155,8 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
             case 0: return 1
-            case 1: return 0
-            case 2: return 0
+            case 1: return casts.count
+            case 2: return crew.count
             default:
                 print("Error in numberOfRowsInSection")
                 return 0
@@ -131,9 +178,18 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
         return UIScreen.main.bounds.height / 20
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section != 0 {
+            return 100
+        } else {
+            return 180
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = indexPath.section
         
-        if indexPath.section == 0 {
+        if section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewTableViewCell.reuseIdentifier) as? OverviewTableViewCell else {
                 print("Cannot find OverviewTableViewCell")
                 return UITableViewCell()
@@ -144,8 +200,26 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configureFoldButton()
             
             return cell
+        } else if section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreditsTableViewCell.reuseIdentifier) as? CreditsTableViewCell else {
+                print("Cannot find CreditsTableViewCell")
+                return UITableViewCell()
+            }
+            
+            cell.cast = casts[indexPath.row]
+            cell.configureCell()
+            
+            return cell
         } else {
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreditsTableViewCell.reuseIdentifier) as? CreditsTableViewCell else {
+                print("Cannot find CreditsTableViewCell")
+                return UITableViewCell()
+            }
+            
+            cell.cast = crew[indexPath.row]
+            cell.configureCell()
+            
+            return cell
         }
     }
 }

@@ -16,6 +16,7 @@ class OverviewTableViewCell: UITableViewCell {
     var overview: String?
     var isFolded = true
     
+    
     func configureOverviewLabel() {
         overviewLabel.numberOfLines = 2
         overviewLabel.text = overview ?? "Could not fetch overview data. Please try again."
