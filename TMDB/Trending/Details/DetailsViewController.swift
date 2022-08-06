@@ -51,7 +51,7 @@ class DetailsViewController: UIViewController {
         detailsTableView.register(UINib(nibName: OverviewTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: OverviewTableViewCell.reuseIdentifier)
         detailsTableView.register(UINib(nibName: CreditsTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: CreditsTableViewCell.reuseIdentifier)
         
-        detailsTableView.rowHeight = UITableView.automaticDimension
+//        detailsTableView.rowHeight = UITableView.automaticDimension
 //        detailsTableView.estimatedRowHeight = 180
 
         fetchDetails()
@@ -184,14 +184,16 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section != 0 {
             return 100
         } else {
-//            return UITableView.automaticDimension
-            return 180
+            return UITableView.automaticDimension
+//            return 180
         }
+        
+//        return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
-    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        UITableView.automaticDimension
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section

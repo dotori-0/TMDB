@@ -17,6 +17,7 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var backdropImageView: UIImageView!
+    @IBOutlet weak var trailerButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var showDetailsLabel: UILabel!
@@ -47,6 +48,12 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         backdropImageView.contentMode = .scaleAspectFill
         backdropImageView.layer.cornerRadius = 12
         backdropImageView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
+        
+        trailerButton.setTitle("", for: .normal)
+        trailerButton.tintColor = .white
+//        trailerButton.backgroundColor = .systemMint
+        trailerButton.setImage(UIImage(systemName: "paperclip.circle.fill"), for: .normal)
+//        trailerButton.contentMode = .scaleAspectFill
         
         titleLabel.text = data.title
         titleLabel.font = .systemFont(ofSize: 20)

@@ -116,6 +116,7 @@ extension TrendingViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("페이지: \(page) - \(mediaArray[indexPath.item].title)")
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseIdentifier, for: indexPath) as? TrendingCollectionViewCell else {
             print("Cannot find TrendingCollectionViewCell")
             return UICollectionViewCell()
@@ -139,7 +140,7 @@ extension TrendingViewController: UICollectionViewDataSource, UICollectionViewDe
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset)
+//        print(scrollView.contentOffset)
         if scrollView.contentOffset.y > offsetLimit {
             page += 1
             offsetLimit += 8000
