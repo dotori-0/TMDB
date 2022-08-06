@@ -49,11 +49,7 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         backdropImageView.layer.cornerRadius = 12
         backdropImageView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
         
-        trailerButton.setTitle("", for: .normal)
-        trailerButton.tintColor = .white
-//        trailerButton.backgroundColor = .systemMint
-        trailerButton.setImage(UIImage(systemName: "paperclip.circle.fill"), for: .normal)
-//        trailerButton.contentMode = .scaleAspectFill
+        designTrailerButton()
         
         titleLabel.text = data.title
         titleLabel.font = .systemFont(ofSize: 20)
@@ -65,6 +61,27 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         showDetailsLabel.font = .systemFont(ofSize: 13)
         
         configureShadowForContainerView()
+    }
+    
+    
+    func designTrailerButton() {
+        trailerButton.setTitle("", for: .normal)
+        trailerButton.tintColor = .white
+//        trailerButton.backgroundColor = .systemMint
+        
+        let symbolConfig = UIImage.SymbolConfiguration(pointSize: 150)
+        let paperclipImage = UIImage(systemName: "paperclip.circle.fill", withConfiguration: symbolConfig)
+        trailerButton.setImage(paperclipImage, for: .normal)
+//        trailerButton.contentMode = .scaleAspectFill  // plain X, defult X
+//        trailerButton.imageView?.contentMode = .scaleAspectFill
+//        trailerButton.imageView?.contentMode = .scaleAspectFit  // plain X, defult X
+//        trailerButton.titleLabel?.font = .systemFont(ofSize: 40)  // plain X, defult X
+//        trailerButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+        trailerButton.layer.shadowColor = UIColor.black.cgColor
+        trailerButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        trailerButton.layer.shadowRadius = 20
+        trailerButton.layer.shadowOpacity = 0.5
     }
     
     func configureShadowForContainerView() {

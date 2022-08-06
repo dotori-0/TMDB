@@ -68,17 +68,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zl6-LP-sS1">
-                                <rect key="frame" x="390.5" y="20" width="44.5" height="44.5"/>
+                                <rect key="frame" x="395.5" y="12" width="47.5" height="47.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Zl6-LP-sS1" secondAttribute="height" id="IKG-zL-MRQ"/>
                                 </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Zl6-LP-sS1" secondAttribute="trailing" constant="20" id="32k-oj-kpB"/>
+                            <constraint firstAttribute="trailing" secondItem="Zl6-LP-sS1" secondAttribute="trailing" constant="12" id="32k-oj-kpB"/>
                             <constraint firstItem="RFl-Xd-8Tj" firstAttribute="top" secondItem="hOT-9d-kMu" secondAttribute="bottom" constant="18" id="62t-Qu-KTM"/>
                             <constraint firstItem="DEA-vk-YBW" firstAttribute="height" secondItem="DRl-jg-chH" secondAttribute="height" multiplier="0.65" id="67h-Pz-AkW"/>
                             <constraint firstItem="hOT-9d-kMu" firstAttribute="leading" secondItem="DRl-jg-chH" secondAttribute="leading" constant="20" id="6eg-aD-DGr"/>
@@ -89,8 +89,8 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UVs-nS-Jy2" secondAttribute="trailing" constant="20" id="fSa-7X-Vu9"/>
                             <constraint firstAttribute="trailing" secondItem="dla-VL-Szw" secondAttribute="trailing" constant="18" id="ftK-76-KA3"/>
                             <constraint firstAttribute="width" secondItem="DRl-jg-chH" secondAttribute="height" id="ggl-kY-HuJ"/>
-                            <constraint firstItem="Zl6-LP-sS1" firstAttribute="top" secondItem="DRl-jg-chH" secondAttribute="top" constant="20" id="krv-sK-fav"/>
-                            <constraint firstItem="Zl6-LP-sS1" firstAttribute="height" secondItem="DEA-vk-YBW" secondAttribute="height" multiplier="0.15" id="mdI-Rb-ovG"/>
+                            <constraint firstItem="Zl6-LP-sS1" firstAttribute="top" secondItem="DRl-jg-chH" secondAttribute="top" constant="12" id="krv-sK-fav"/>
+                            <constraint firstItem="Zl6-LP-sS1" firstAttribute="height" secondItem="DEA-vk-YBW" secondAttribute="height" multiplier="0.16" id="mdI-Rb-ovG"/>
                             <constraint firstItem="dla-VL-Szw" firstAttribute="centerY" secondItem="RFl-Xd-8Tj" secondAttribute="centerY" id="pEB-n9-2F6"/>
                             <constraint firstItem="DEA-vk-YBW" firstAttribute="centerX" secondItem="DRl-jg-chH" secondAttribute="centerX" id="pr3-bN-z6z"/>
                             <constraint firstItem="DEA-vk-YBW" firstAttribute="top" secondItem="DRl-jg-chH" secondAttribute="top" id="r3P-Pi-yjI"/>
