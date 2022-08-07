@@ -19,6 +19,7 @@
 		0A130A2B2899F88D00B1CCB5 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A130A2A2899F88D00B1CCB5 /* APIKey.swift */; };
 		0A130A2F2899F9B800B1CCB5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A130A2E2899F9B800B1CCB5 /* Constant.swift */; };
 		0A130A332899FAAB00B1CCB5 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A130A322899FAAB00B1CCB5 /* Example.swift */; };
+		0A60F068289FBE05008538AF /* Web.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A60F067289FBE05008538AF /* Web.storyboard */; };
 		0A62E532289AB63A00951038 /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62E530289AB63A00951038 /* TrendingCollectionViewCell.swift */; };
 		0A62E533289AB63A00951038 /* TrendingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A62E531289AB63A00951038 /* TrendingCollectionViewCell.xib */; };
 		0A62E536289AB69800951038 /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62E535289AB69800951038 /* TrendingViewController.swift */; };
@@ -29,6 +30,7 @@
 		0A62E545289ABCFC00951038 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62E544289ABCFC00951038 /* UIViewController+Extension.swift */; };
 		0A62E547289ABD4D00951038 /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62E546289ABD4D00951038 /* UICollectionViewCell+Extension.swift */; };
 		0A62E54A289AC7FE00951038 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0A62E549289AC7FE00951038 /* Kingfisher */; };
+		0A7ADC40289FBD4B00A32A39 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7ADC3F289FBD4B00A32A39 /* WebViewController.swift */; };
 		0A8F41B3289BF84400AC4B96 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F41B2289BF84400AC4B96 /* UITableViewCell+Extension.swift */; };
 		0A8F41B5289C015A00AC4B96 /* CustomTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F41B4289C015A00AC4B96 /* CustomTableViewCellDelegate.swift */; };
 		0A8F41B9289C07D900AC4B96 /* CreditsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A8F41B7289C07D900AC4B96 /* CreditsTableViewCell.xib */; };
@@ -51,6 +53,7 @@
 		0A130A2A2899F88D00B1CCB5 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		0A130A2E2899F9B800B1CCB5 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		0A130A322899FAAB00B1CCB5 /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
+		0A60F067289FBE05008538AF /* Web.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Web.storyboard; sourceTree = "<group>"; };
 		0A62E530289AB63A00951038 /* TrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		0A62E531289AB63A00951038 /* TrendingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingCollectionViewCell.xib; sourceTree = "<group>"; };
 		0A62E535289AB69800951038 /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		0A62E542289ABCCF00951038 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		0A62E544289ABCFC00951038 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		0A62E546289ABD4D00951038 /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
+		0A7ADC3F289FBD4B00A32A39 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		0A8F41B2289BF84400AC4B96 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		0A8F41B4289C015A00AC4B96 /* CustomTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		0A8F41B7289C07D900AC4B96 /* CreditsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreditsTableViewCell.xib; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 				0A62E535289AB69800951038 /* TrendingViewController.swift */,
 				0A62E530289AB63A00951038 /* TrendingCollectionViewCell.swift */,
 				0A62E531289AB63A00951038 /* TrendingCollectionViewCell.xib */,
+				0A7ADC3E289FBC5900A32A39 /* Web */,
 				0A0EC35F289BF58E005DC884 /* Details */,
 				0A62E53D289AB9F600951038 /* Data */,
 			);
@@ -181,6 +186,15 @@
 				0A62E542289ABCCF00951038 /* ReusableViewProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0A7ADC3E289FBC5900A32A39 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				0A60F067289FBE05008538AF /* Web.storyboard */,
+				0A7ADC3F289FBD4B00A32A39 /* WebViewController.swift */,
+			);
+			path = Web;
 			sourceTree = "<group>";
 		};
 		0A8F41BA289C0A1200AC4B96 /* Data */ = {
@@ -262,6 +276,7 @@
 				0A130A272899F7D300B1CCB5 /* .gitignore in Resources */,
 				0A62E533289AB63A00951038 /* TrendingCollectionViewCell.xib in Resources */,
 				0A0EC363289BF5D2005DC884 /* OverviewTableViewCell.xib in Resources */,
+				0A60F068289FBE05008538AF /* Web.storyboard in Resources */,
 				0A130A1F2899F72D00B1CCB5 /* LaunchScreen.storyboard in Resources */,
 				0A8F41B9289C07D900AC4B96 /* CreditsTableViewCell.xib in Resources */,
 				0A130A1C2899F72D00B1CCB5 /* Assets.xcassets in Resources */,
@@ -277,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A0EC362289BF5D2005DC884 /* OverviewTableViewCell.swift in Sources */,
+				0A7ADC40289FBD4B00A32A39 /* WebViewController.swift in Sources */,
 				0A62E545289ABCFC00951038 /* UIViewController+Extension.swift in Sources */,
 				0A62E547289ABD4D00951038 /* UICollectionViewCell+Extension.swift in Sources */,
 				0A130A332899FAAB00B1CCB5 /* Example.swift in Sources */,

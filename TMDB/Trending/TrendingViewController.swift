@@ -17,6 +17,9 @@ class TrendingViewController: UIViewController {
     
     var mediaArray: [MediaModel] = []
     
+    var selectedMediaType: String?
+    var selectedMediaID: Int?
+    
     var page = 1
     var offsetLimit: CGFloat = 8000
     
@@ -107,6 +110,24 @@ class TrendingViewController: UIViewController {
         }
         print("fetchData ending")
     }
+    
+    
+    @objc
+//    func openWebView(mediaType: String, mediaID: Int) {
+    func openWebView() {
+        let sb = UIStoryboard(name: "Web", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else {
+            print("Cannot find WebViewController")
+            return
+        }
+        
+        // 여기에서 video를 받아서 넘겨주는 것이 나은지, WebViewController에서 video를 받는 것이 나은지?
+//        vc.media = selectedMedia
+        vc.mediaType = selectedMediaType
+        vc.mediaID = selectedMediaID
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 
@@ -122,7 +143,15 @@ extension TrendingViewController: UICollectionViewDataSource, UICollectionViewDe
             return UICollectionViewCell()
         }
         
-        cell.configureCell(data: mediaArray[indexPath.item])
+        let data = mediaArray[indexPath.item]
+        
+        cell.configureCell(data: data)
+
+//        cell.trailerButton.addTarget(self, action: #selector(openWebView(mediaType: data.mediaType, mediaID: data.id)), for: .touchUpInside)
+        selectedMediaType = data.mediaType
+        selectedMediaID = data.id
+        cell.trailerButton.addTarget(self, action: #selector(openWebView), for: .touchUpInside)
+        
         
         return cell
     }

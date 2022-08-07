@@ -22,8 +22,10 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var showDetailsLabel: UILabel!
     
+    var media: MediaModel?
+    
     func configureCell(data: MediaModel) {
-        
+        media = data
 //        print("🍑")
 //        print(layer.masksToBounds)  // true
         layer.masksToBounds = false
@@ -93,4 +95,20 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         containerView.layer.shadowOpacity = 0.7
         containerView.layer.cornerRadius = 12
     }
+    
+    
+//    @IBAction func trailerButtonClicked(_ sender: UIButton) {
+//        let sb = UIStoryboard(name: "Web", bundle: nil)
+//        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else {
+//            print("Cannot find WebViewController")
+//            return
+//        }
+//
+//        vc.media = media
+//        // 여기에서 video를 받아서 넘겨주는 것이 나은지, WebViewController에서 video를 받는 것이 나은지?
+//
+//
+//    }
+    
+    
 }
