@@ -9,6 +9,8 @@ import UIKit
 import WebKit
 
 import Alamofire
+//import SkeletonView
+import JGProgressHUD
 import SwiftyJSON
 
 
@@ -16,20 +18,26 @@ class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     
-    
 //    var url: String?
 //    var media: MediaModel?
     var mediaType: String?
     var mediaID: Int?
     
+    let hud = JGProgressHUD()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        webView.isSkeletonable = true
+//        webView.showAnimatedSkeleton()
+//        webView.showAnimatedGradientSkeleton()
 
         fetchVideo()
     }
     
     func fetchVideo() {
+        hud.show(in: view, animated: true)
         guard let mediaType = self.mediaType != nil ? self.mediaType : nil else {  // 맞는 구문인지..? data가 nil일 경우 guard let으로 처리하는 방법?
             print("Cannot find mediaType.")
             return
@@ -53,6 +61,8 @@ class WebViewController: UIViewController {
                     let url = "https://www.youtube.com/watch?v=\(videoKey)"
                     
                     self.openWebPage(url: url)
+                    
+//                    self.hud.dismiss(animated: true)  // 위치를 어디에?
                 case .failure(let error):
                     print(error)
             }
@@ -66,7 +76,9 @@ class WebViewController: UIViewController {
         }
 
         let request = URLRequest(url: url)
+        
         webView.load(request)
+        hud.dismiss(animated: true)
 }
 
 
