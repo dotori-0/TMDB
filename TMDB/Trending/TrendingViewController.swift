@@ -8,7 +8,10 @@
 import UIKit
 
 import Alamofire
+//import SkeletonView
+import Kingfisher
 import SwiftyJSON
+import SkeletonView
 
 
 class TrendingViewController: UIViewController {
@@ -30,6 +33,9 @@ class TrendingViewController: UIViewController {
         navigationItem.backButtonTitle = ""
 //        navigationItem.titleView?.tintColor = .black
         
+        trendingCollectionView.isSkeletonable = true
+        trendingCollectionView.showAnimatedGradientSkeleton(animation: GradientDirection.topLeftBottomRight.slidingAnimation())
+        
         trendingCollectionView.dataSource = self
         trendingCollectionView.delegate = self
         
@@ -42,6 +48,13 @@ class TrendingViewController: UIViewController {
         
         fetchData()
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        trendingCollectionView.isSkeletonable = true
+//        trendingCollectionView.showAnimatedGradientSkeleton(animation: GradientDirection.topLeftBottomRight.slidingAnimation())
+////        trendingCollectionView.showAnimatedSkeleton(us , animation: GradientDirection.topLeftBottomRight.slidingAnimation())
+//    }
     
     
     func configureCollectionViewLayout() {
@@ -100,7 +113,10 @@ class TrendingViewController: UIViewController {
                         self.mediaArray.append(mediaModel)
 
 //                        print(self.mediaArray.count)
-//
+
+//                        self.trendingCollectionView.stopSkeletonAnimation()
+                        self.trendingCollectionView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))  // 여기에서 hide 하지 않으면 스크롤 불가
+                        
                         self.trendingCollectionView.reloadData()
                     }
                     
@@ -135,24 +151,43 @@ extension TrendingViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mediaArray.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print("페이지: \(page) - \(mediaArray[indexPath.item].title)")
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseIdentifier, for: indexPath) as? TrendingCollectionViewCell else {
             print("Cannot find TrendingCollectionViewCell")
             return UICollectionViewCell()
         }
-        
-        let data = mediaArray[indexPath.item]
-        
-        cell.configureCell(data: data)
 
-//        cell.trailerButton.addTarget(self, action: #selector(openWebView(mediaType: data.mediaType, mediaID: data.id)), for: .touchUpInside)
+        cell.isSkeletonable = true
+//        cell.showAnimatedSkeleton()
+        // cell의 cornerRadius를 넘어서 덮어 버리고, 데이터가 보이지 않음
+
+        let data = mediaArray[indexPath.item]
+
+        cell.configureCell(data: data)
+        cell.skeletonizeAll()
+        
+        cell.backdropImageView.showAnimatedGradientSkeleton(animation: GradientDirection.topLeftBottomRight.slidingAnimation())
+        
+        let url = URL(string: Endpoint.configurationURL + data.backdropPath)
+        cell.backdropImageView.kf.setImage(with: url) { result in
+            switch result {
+                case .success:
+                    print("🍒 성공")
+//                    self.trendingCollectionView.hideSkeleton()
+                    cell.backdropImageView.hideSkeleton()
+                    print("🍒 성공")
+                case .failure(let error):
+                    print(error)
+            }
+        }
+
         selectedMediaType = data.mediaType
         selectedMediaID = data.id
         cell.trailerButton.addTarget(self, action: #selector(openWebView), for: .touchUpInside)
-        
-        
+
+
         return cell
     }
     
@@ -176,4 +211,46 @@ extension TrendingViewController: UICollectionViewDataSource, UICollectionViewDe
             fetchData()
         }
     }
+}
+
+
+extension TrendingViewController: SkeletonCollectionViewDataSource {
+//    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+//        return 1
+//    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return TrendingCollectionViewCell.reuseIdentifier
+    }
+    
+//    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return mediaArray.count
+//    }
+//
+//    func collectionSkeletonView(_ skeletonView: UICollectionView, skeletonCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+//        print("페이지: \(page) - \(mediaArray[indexPath.item].title)")
+//        guard let cell = skeletonView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseIdentifier, for: indexPath) as? TrendingCollectionViewCell else {
+//            print("Cannot find TrendingCollectionViewCell")
+//            return UICollectionViewCell()
+//        }
+//
+////        cell.isSkeletonable = true
+////        cell.showAnimatedSkeleton()
+//        // cell의 cornerRadius를 넘어서 덮어 버리고, 데이터가 보이지 않음
+//
+//        let data = mediaArray[indexPath.item]
+//
+//        cell.configureCell(data: data)
+//
+//
+////        cell.trailerButton.addTarget(self, action: #selector(openWebView(mediaType: data.mediaType, mediaID: data.id)), for: .touchUpInside)
+//        selectedMediaType = data.mediaType
+//        selectedMediaID = data.id
+//        cell.trailerButton.addTarget(self, action: #selector(openWebView), for: .touchUpInside)
+//
+//
+//        return cell
+//    }
+    
+
 }

@@ -8,6 +8,7 @@
 import UIKit
 
 import Kingfisher
+import SkeletonView
 
 class TrendingCollectionViewCell: UICollectionViewCell {
 
@@ -45,8 +46,8 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         mediaTypeLabel.textColor = .lightGray
         mediaTypeLabel.font = .boldSystemFont(ofSize: 15)
         
-        let url = URL(string: Endpoint.configurationURL + data.backdropPath)
-        backdropImageView.kf.setImage(with: url)
+//        let url = URL(string: Endpoint.configurationURL + data.backdropPath)
+//        backdropImageView.kf.setImage(with: url)
         backdropImageView.contentMode = .scaleAspectFill
         backdropImageView.layer.cornerRadius = 12
         backdropImageView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
@@ -94,6 +95,24 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         containerView.layer.shadowRadius = 15
         containerView.layer.shadowOpacity = 0.7
         containerView.layer.cornerRadius = 12
+    }
+    
+    
+    func skeletonizeAll() {
+        self.isSkeletonable = true
+        self.containerView.isSkeletonable = true
+        
+        releaseDateLabel.isSkeletonable = true
+//        releaseDateLabel.showAnimatedSkeleton()
+        genreLabel.isSkeletonable = true
+        mediaTypeLabel.isSkeletonable = true
+        
+        backdropImageView.isSkeletonable = true
+//        backdropImageView.showAnimatedSkeleton()
+        
+        titleLabel.isSkeletonable = true
+        overviewLabel.isSkeletonable = true
+        showDetailsLabel.isSkeletonable = true
     }
     
     
