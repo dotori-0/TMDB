@@ -25,6 +25,7 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     
     var media: MediaModel?
     
+    
     func configureCell(data: MediaModel) {
         media = data
 //        print("🍑")

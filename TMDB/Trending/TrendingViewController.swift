@@ -102,6 +102,7 @@ class TrendingViewController: UIViewController {
 //                        }
 //                        print(genreIDs)
 //                        print(type(of: genreIDs))
+                        let posterPath = result["poster_path"].stringValue
                         let genreID = result["genre_ids"][0].intValue
 //                        print("genreID", genreID)
                         let releaseDate = result["release_date"].stringValue
@@ -109,7 +110,7 @@ class TrendingViewController: UIViewController {
                         let voteAverage = result["vote_average"].doubleValue
                         let overview = result["overview"].stringValue
 
-                        let mediaModel = MediaModel(title: title, mediaType: mediaType, id: id, backdropPath: backdropPath, posterPath: nil, genreID: genreID, releaseDate: releaseDate, voteAverage: voteAverage, overview: overview)
+                        let mediaModel = MediaModel(title: title, mediaType: mediaType, id: id, backdropPath: backdropPath, posterPath: posterPath, genreID: genreID, releaseDate: releaseDate, voteAverage: voteAverage, overview: overview)
                         self.mediaArray.append(mediaModel)
 
 //                        print(self.mediaArray.count)

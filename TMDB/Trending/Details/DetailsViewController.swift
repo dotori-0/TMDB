@@ -54,7 +54,8 @@ class DetailsViewController: UIViewController {
 //        detailsTableView.rowHeight = UITableView.automaticDimension
 //        detailsTableView.estimatedRowHeight = 180
 
-        fetchDetails()
+        configureHeaderView()
+        fetchCredits()
 //        configureHeaderView()
     }
     
@@ -77,32 +78,10 @@ class DetailsViewController: UIViewController {
     }
     
     
-    func fetchDetails() {
+    func fetchCredits() {
         guard let media = self.media != nil ? self.media : nil else {  // 맞는 구문인지..? data가 nil일 경우 guard let으로 처리하는 방법?
             print("Cannot find media.")
             return
-        }
-        
-        /// Details
-        let detailsURL = "\(Endpoint.detailsURL)\(media.mediaType)/\(media.id)?api_key=\(APIKey.TMDB)"
-        // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-        // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
-        
-        AF.request(detailsURL, method: .get).validate(statusCode: 200..<400).responseData { response in
-            switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    print("JSON: \(json)")
-                    
-                    let posterPath = json["poster_path"].stringValue
-                    
-                    self.media?.posterPath = posterPath
-//
-                    self.configureHeaderView()
-                    
-                case .failure(let error):
-                    print(error)
-            }
         }
         
         
