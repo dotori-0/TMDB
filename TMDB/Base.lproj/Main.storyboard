@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OBk-HN-ZGn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="71E-cy-hiB">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -8,10 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="G0j-Fb-V4c">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OBk-HN-ZGn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="PJc-YH-EG4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4jf-9l-dmO">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -24,9 +25,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GAd-Lw-kyM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63.768115942028992" y="83.705357142857139"/>
+            <point key="canvasLocation" x="973.91304347826099" y="83.705357142857139"/>
         </scene>
-        <!--Trending View Controller-->
+        <!--Trending-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="TrendingViewController" id="BYZ-38-t0r" customClass="TrendingViewController" customModule="TMDB" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8C7-Uh-NJE">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uf0-4F-CdH">
                                     <size key="itemSize" width="128" height="128"/>
@@ -55,17 +56,19 @@
                             <constraint firstItem="8C7-Uh-NJE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Wzr-xb-B0P"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Trending" image="chart.line.uptrend.xyaxis" catalog="system" id="eOn-RJ-qxi"/>
                     <navigationItem key="navigationItem" id="21w-2v-Su3">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="list.triangle" catalog="system" id="dzJ-GB-ENJ"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="c4j-IP-4AI"/>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="trendingCollectionView" destination="8C7-Uh-NJE" id="E9A-bj-gn1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="973.91304347826099" y="83.705357142857139"/>
+            <point key="canvasLocation" x="1884.057971014493" y="83.705357142857139"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="RnV-54-1I4">
@@ -123,10 +126,39 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kpd-3M-Bbi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1775" y="84"/>
+            <point key="canvasLocation" x="2684.057971014493" y="83.705357142857139"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Bm9-24-1KG">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="71E-cy-hiB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8AD-SW-azo">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="o4S-mh-Tnc" kind="relationship" relationship="viewControllers" id="K7C-ik-q6C"/>
+                        <segue destination="OBk-HN-ZGn" kind="relationship" relationship="viewControllers" id="tCW-rc-1Ai"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YfM-EY-FGZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-177" y="449"/>
+        </scene>
+        <!--Recommendations-->
+        <scene sceneID="hiD-aB-sMV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Recommendations" id="o4S-mh-Tnc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="epA-lB-CI0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LVh-Z8-b8M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="805" y="702"/>
         </scene>
     </scenes>
     <resources>
+        <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="101"/>
         <image name="list.triangle" catalog="system" width="128" height="91"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
