@@ -25,7 +25,7 @@ class RecommendationsTableViewCell: UITableViewCell {
     
     func designLabel() {
         rowTitleLabel.textColor = .label
-        rowTitleLabel.font = .boldSystemFont(ofSize: 24)
+        rowTitleLabel.font = .boldSystemFont(ofSize: 18)
 //        print("👻 rowTitleLabel.frame.height: \(rowTitleLabel.frame.height)")
     }
     

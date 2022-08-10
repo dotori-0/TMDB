@@ -39,6 +39,7 @@
                     <constraint firstAttribute="trailing" secondItem="k4m-bV-mbB" secondAttribute="trailing" id="e7a-Vj-kzV"/>
                     <constraint firstItem="k4m-bV-mbB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="eGe-uX-WnH"/>
                     <constraint firstItem="xHD-A2-lca" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="lCi-7X-8Lq"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xHD-A2-lca" secondAttribute="trailing" constant="8" id="lEP-Z0-sQP"/>
                     <constraint firstAttribute="bottom" secondItem="k4m-bV-mbB" secondAttribute="bottom" id="umr-Gj-mIk"/>
                     <constraint firstItem="k4m-bV-mbB" firstAttribute="top" secondItem="xHD-A2-lca" secondAttribute="bottom" constant="8" id="wq0-tZ-4Zz"/>
                 </constraints>

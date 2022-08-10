@@ -37,6 +37,9 @@ class RecommendationsViewController: UIViewController {
         recommendationsTableView.delegate = self
         recommendationsTableView.register(UINib(nibName: RecommendationsTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: RecommendationsTableViewCell.reuseIdentifier)
         
+        recommendationsTableView.separatorStyle = .none
+        recommendationsTableView.allowsSelection = false
+        
 //        TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: 725201) { title, posterPaths in
 //        }
         // 1. 네트워크 통신   2. 배열 생성   3. 배열에 담기
