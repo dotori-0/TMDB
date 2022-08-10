@@ -75,7 +75,7 @@ class TMDBAPIManager {
     
     /// Fetch Credits Using TMDB API
     func fetchCredits(media: MediaModel, completionHandler: @escaping (_ cast: [CastModel], _ crew: [CastModel]) -> ()) {
-        let creditsURL = "\(Endpoint.detailsURL)\(media.mediaType)/\(media.id)/credits?api_key=\(APIKey.TMDB)"
+        let creditsURL = "\(Endpoint.baseURL)\(media.mediaType)/\(media.id)/credits?api_key=\(APIKey.TMDB)"
         // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
         // https://api.themoviedb.org/3/tv/{tv_id}/credits?api_key=<<api_key>>&language=en-US
         
@@ -139,6 +139,38 @@ class TMDBAPIManager {
                     
                     completionHandler(castArray, crewArray)
 
+                case .failure(let error):
+                    print(error)
+            }
+        }
+    }
+    
+    
+    func fetchVideo(mediaType: String, mediaID: Int, completionHandler: @escaping (String) -> ()) {
+//        guard let mediaType = self.mediaType != nil ? self.mediaType : nil else {  // 맞는 구문인지..? data가 nil일 경우 guard let으로 처리하는 방법?
+//            print("Cannot find mediaType.")
+//            return
+//        }
+//
+//        guard let mediaID = self.mediaID != nil ? self.mediaID : nil else {  // 맞는 구문인지..? data가 nil일 경우 guard let으로 처리하는 방법?
+//            print("Cannot find mediaID.")
+//            return
+//        }
+        
+
+        let url = "\(Endpoint.baseURL)\(mediaType)/\(mediaID)/videos?api_key=\(APIKey.TMDB)"
+        // https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=<<api_key>>&language=en-US
+        // https://api.themoviedb.org/3/tv/{tv_id}/videos?api_key=<<api_key>>&language=en-US
+        
+        AF.request(url, method: .get).validate(statusCode: 200..<400).responseData { response in
+            switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    let videoKey = json["results"][0]["key"].stringValue
+
+                    completionHandler(videoKey)
+                    
+//                    self.hud.dismiss(animated: true)  // 위치를 어디에?
                 case .failure(let error):
                     print(error)
             }

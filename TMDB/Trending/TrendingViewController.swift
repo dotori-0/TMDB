@@ -139,7 +139,7 @@ extension TrendingViewController: UICollectionViewDataSource, UICollectionViewDe
         
         cell.backdropImageView.showAnimatedGradientSkeleton(animation: GradientDirection.topLeftBottomRight.slidingAnimation())
         
-        let url = URL(string: Endpoint.configurationURL + data.backdropPath)
+        let url = URL(string: Endpoint.imageConfigurationURL + data.backdropPath)
         cell.backdropImageView.kf.setImage(with: url) { result in
             switch result {
                 case .success:

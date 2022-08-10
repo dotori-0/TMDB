@@ -68,11 +68,11 @@ class DetailsViewController: UIViewController {
         titleLabel.layer.shadowRadius = 10
         titleLabel.layer.shadowOpacity = 1.0
         
-        let backdropURL = URL(string: Endpoint.configurationURL + (media?.backdropPath)!)  // 강제해제 하지 않기?
+        let backdropURL = URL(string: Endpoint.imageConfigurationURL + (media?.backdropPath)!)  // 강제해제 하지 않기?
         backdropImageView.kf.setImage(with: backdropURL)
         backdropImageView.contentMode = .scaleAspectFill
         
-        let posterURL = URL(string: Endpoint.configurationURL + (media?.posterPath)!)  // 강제해제 하지 않기?
+        let posterURL = URL(string: Endpoint.imageConfigurationURL + (media?.posterPath)!)  // 강제해제 하지 않기?
         posterImageView.kf.setImage(with: posterURL)
         posterImageView.contentMode = .scaleAspectFill
     }

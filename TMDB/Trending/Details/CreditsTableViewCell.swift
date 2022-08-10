@@ -20,7 +20,7 @@ class CreditsTableViewCell: UITableViewCell {
     
     
     func configureCell() {
-        let url = URL(string: Endpoint.configurationURL + cast!.profilePath)  // 강제해제 하지 않기?
+        let url = URL(string: Endpoint.imageConfigurationURL + cast!.profilePath)  // 강제해제 하지 않기?
         profileImageView.kf.setImage(with: url)
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.backgroundColor = .lightGray
