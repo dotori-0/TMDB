@@ -202,34 +202,36 @@ class TMDBAPIManager {
     }
     
     
-    func callRequestsForDetailsAndRecommendations(movieIDs: [Int]) {
-        var titleAndPosterPaths: [(String, [String])] = []
+    func callRequestsForDetailsAndRecommendations(movieIDs: [Int], completionHandler: @escaping ([(String, [String])]) -> ()) {
+        var titlesAndPosterPaths: [(String, [String])] = []
         
         TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[0]) { title, posterPaths in
-            titleAndPosterPaths.append((title, posterPaths))
+            titlesAndPosterPaths.append((title, posterPaths))
 //            titleAndPosterPaths.append(contentsOf: (title, posterPaths))
 //            print(#function, titleAndPosterPaths)
             
             TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[1]) { title, posterPaths in
-                titleAndPosterPaths.append((title, posterPaths))
+                titlesAndPosterPaths.append((title, posterPaths))
                 
                 TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[2]) { title, posterPaths in
-                    titleAndPosterPaths.append((title, posterPaths))
+                    titlesAndPosterPaths.append((title, posterPaths))
                  
                     TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[3]) { title, posterPaths in
-                        titleAndPosterPaths.append((title, posterPaths))
+                        titlesAndPosterPaths.append((title, posterPaths))
                      
                         TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[4]) { title, posterPaths in
-                            titleAndPosterPaths.append((title, posterPaths))
+                            titlesAndPosterPaths.append((title, posterPaths))
                             
                             TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[5]) { title, posterPaths in
-                                titleAndPosterPaths.append((title, posterPaths))
+                                titlesAndPosterPaths.append((title, posterPaths))
                                 
                                 TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[6]) { title, posterPaths in
-                                    titleAndPosterPaths.append((title, posterPaths))
+                                    titlesAndPosterPaths.append((title, posterPaths))
                                     
-                                    print(#function)
-                                    dump(titleAndPosterPaths)
+//                                    print(#function)
+//                                    dump(titlesAndPosterPaths)
+                                    
+                                    completionHandler(titlesAndPosterPaths)
                                 }
                             }
                         }

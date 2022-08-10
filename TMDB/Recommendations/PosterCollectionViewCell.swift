@@ -21,5 +21,6 @@ class PosterCollectionViewCell: UICollectionViewCell {
 
     func roundCorners() {
         posterView.layer.cornerRadius = 10
+        posterView.layer.masksToBounds = true
     }
 }
