@@ -20,7 +20,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var detailsTableView: UITableView!
     
     var media: MediaModel?
-    var casts: [CastModel] = []
+    var cast: [CastModel] = []
     var crew: [CastModel] = []
     
 //    enum isFolded {
@@ -136,7 +136,7 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
             case 0: return 1
-            case 1: return casts.count
+            case 1: return cast.count
             case 2: return crew.count
             default:
                 print("Error in numberOfRowsInSection")
@@ -187,6 +187,7 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configureOverviewLabel()
             cell.configureButton()
             
+            
             return cell
         } else if section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CreditsTableViewCell.reuseIdentifier) as? CreditsTableViewCell else {
@@ -194,7 +195,7 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             
-            cell.cast = casts[indexPath.row]
+            cell.cast = cast[indexPath.row]
             cell.configureCell()
             
             return cell
