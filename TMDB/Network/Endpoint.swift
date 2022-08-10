@@ -30,4 +30,11 @@ struct Endpoint {
     // https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&append_to_response=recommendations
     
     static let youtubeURL = "https://www.youtube.com/watch?v="
+    
+    
+    static func getMovieDetailsAndRecommendationsURL(movieID: Int) -> String {
+        let url = "\(Endpoint.baseURL)movie/\(movieID)?api_key=\(APIKey.TMDB)&append_to_response=recommendations"
+        
+        return url
+    }
 }

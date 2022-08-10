@@ -36,10 +36,12 @@ class RecommendationsTableViewCell: UITableViewCell {
         
 //        let width = UIScreen.main.bounds.width / 3.2
 //        let height = width * 1.414
-        let height = posterCollectionView.frame.height
+        
+//        let height = posterCollectionView.frame.height
 //        let height = UIScreen.main.bounds.height / 4.2
         print("💎 테이블뷰셀 posterCollectionView.frame.height: \(posterCollectionView.frame.height)")
-        let width = height / 1.414
+        
+//        let width = height / 1.414
 //        layout.itemSize = CGSize(width: width, height: height)
         
 //        collectionViewItemHeight = height

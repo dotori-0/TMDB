@@ -30,7 +30,7 @@
                             <constraint firstItem="bhQ-RJ-0Ws" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="hsQ-eK-UCf"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Recommendations" image="lasso.sparkles" catalog="system" id="1WC-Gh-7Rj"/>
+                    <tabBarItem key="tabBarItem" title="Recommendations" image="lasso.and.sparkles" catalog="system" id="1WC-Gh-7Rj"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="recommendationsTableView" destination="bhQ-RJ-0Ws" id="09Z-1A-PRo"/>
@@ -42,7 +42,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="lasso.sparkles" catalog="system" width="114" height="128"/>
+        <image name="lasso.and.sparkles" catalog="system" width="114" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -176,6 +176,68 @@ class TMDBAPIManager {
             }
         }
     }
+    
+    
+    func fetchDetailsAndRecommendations(movieID: Int, completionHandler: @escaping (_ title: String, _ posterPaths: [String]) -> ()) {
+//    func fetchDetailsAndRecommendations(movieID: Int, completionHandler: @escaping ((String, [String])) -> ()) {  // tuple
+        // https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&append_to_response=recommendations  // &language=en-US&page=1
+        let url = Endpoint.getMovieDetailsAndRecommendationsURL(movieID: movieID)
+        
+        AF.request(url, method: .get).validate(statusCode: 200..<400).responseData { response in
+            switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+//                    print(json)
+                    
+                    let title = json["title"].stringValue
+                    let posterPaths = json["recommendations"]["results"].arrayValue.map { $0["poster_path"].stringValue }
+//                    let recommendations = json["recommendations"]["results"].arrayValue.map { $0["title"].stringValue }
+//                    print(#function, title, posterPaths)
+                    completionHandler(title, posterPaths)
+//                    completionHandler((title, posterPaths))  // tuple
+                case.failure(let error):
+                    print(error)
+            }
+        }
+    }
+    
+    
+    func callRequestsForDetailsAndRecommendations(movieIDs: [Int]) {
+        var titleAndPosterPaths: [(String, [String])] = []
+        
+        TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[0]) { title, posterPaths in
+            titleAndPosterPaths.append((title, posterPaths))
+//            titleAndPosterPaths.append(contentsOf: (title, posterPaths))
+//            print(#function, titleAndPosterPaths)
+            
+            TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[1]) { title, posterPaths in
+                titleAndPosterPaths.append((title, posterPaths))
+                
+                TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[2]) { title, posterPaths in
+                    titleAndPosterPaths.append((title, posterPaths))
+                 
+                    TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[3]) { title, posterPaths in
+                        titleAndPosterPaths.append((title, posterPaths))
+                     
+                        TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[4]) { title, posterPaths in
+                            titleAndPosterPaths.append((title, posterPaths))
+                            
+                            TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[5]) { title, posterPaths in
+                                titleAndPosterPaths.append((title, posterPaths))
+                                
+                                TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: movieIDs[6]) { title, posterPaths in
+                                    titleAndPosterPaths.append((title, posterPaths))
+                                    
+                                    print(#function)
+                                    dump(titleAndPosterPaths)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 

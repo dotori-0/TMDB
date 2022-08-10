@@ -14,13 +14,51 @@ class RecommendationsViewController: UIViewController {
     var collectionViewItemHeight = 0.0
     var cellFrameHeight = 0.0
     
+    var movieIDs = [
+        725201,  // The Gray Man
+        361743,   // Top Gun: Maverick
+        438631,   // Dune
+        391713,   // Lady Bird
+        120467,   // The Grand Budapest Hotel
+        421,      // The Life Aquatic with Steve Zissou
+        83666     // Moonrise Kingdom
+    ]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         recommendationsTableView.dataSource = self
         recommendationsTableView.delegate = self
         recommendationsTableView.register(UINib(nibName: RecommendationsTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: RecommendationsTableViewCell.reuseIdentifier)
+        
+//        TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: 725201) { title, posterPaths in
+//        }
+        TMDBAPIManager.shared.callRequestsForDetailsAndRecommendations(movieIDs: movieIDs)
     }
+    
+    
+//    func getLayout(collectionView: UICollectionView) -> UICollectionViewFlowLayout {
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .horizontal
+//        layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+//
+//    //        let width = UIScreen.main.bounds.width / 3.2
+//    //        let height = width * 1.414
+//        let height = collectionView.frame.height
+//    //        let height = UIScreen.main.bounds.height / 4.2
+//    //    print("💎 테이블뷰셀 posterCollectionView.frame.height: \(posterCollectionView.frame.height)")
+//        let width = height / 1.414
+//        layout.itemSize = CGSize(width: width, height: height)
+//
+//    //        collectionViewItemHeight = height
+//
+//        layout.minimumLineSpacing = 8
+//        layout.minimumInteritemSpacing = 0
+//
+//
+//        return layout
+//    }
 }
 
 
@@ -52,10 +90,9 @@ extension RecommendationsViewController: UITableViewDataSource, UITableViewDeleg
 //        tableView.reloadData()
         
         
-        
         // 여기에서 레이아웃 주면 적용이 안되지만 가로스크롤 문제 없음
 //        cell.posterCollectionView.collectionViewLayout = getLayout(collectionView: cell.posterCollectionView)
-        
+        cell.posterCollectionView.reloadData()
         
         
         return cell
@@ -116,7 +153,7 @@ extension RecommendationsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height
         let width = height / 1.414
-        
+
         return CGSize(width: width, height: height)
     }
 }
@@ -124,24 +161,4 @@ extension RecommendationsViewController: UICollectionViewDelegateFlowLayout {
 
 
 
-func getLayout(collectionView: UICollectionView) -> UICollectionViewFlowLayout {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .horizontal
-    layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-    
-//        let width = UIScreen.main.bounds.width / 3.2
-//        let height = width * 1.414
-    let height = collectionView.frame.height
-//        let height = UIScreen.main.bounds.height / 4.2
-//    print("💎 테이블뷰셀 posterCollectionView.frame.height: \(posterCollectionView.frame.height)")
-    let width = height / 1.414
-    layout.itemSize = CGSize(width: width, height: height)
-    
-//        collectionViewItemHeight = height
 
-    layout.minimumLineSpacing = 8
-    layout.minimumInteritemSpacing = 0
-    
-    
-    return layout
-}
