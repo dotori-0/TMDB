@@ -84,45 +84,10 @@ class DetailsViewController: UIViewController {
             return
         }
         
-        
-        /// Credits
-        let creditsURL = "\(Endpoint.detailsURL)\(media.mediaType)/\(media.id)/credits?api_key=\(APIKey.TMDB)"
-        // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
-        // https://api.themoviedb.org/3/tv/{tv_id}/credits?api_key=<<api_key>>&language=en-US
-        
-        AF.request(creditsURL, method: .get).validate(statusCode: 200..<400).responseData { response in
-            switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    print("JSON: \(json)")
-                    
-                    for cast in json["cast"].arrayValue {
-                        let profilePath = cast["profile_path"].stringValue
-                        let name = cast["name"].stringValue
-                        let character = cast["character"].stringValue
-                        
-                        let cast = CastModel(profilePath: profilePath, name: name, character: character)
-                        
-                        self.casts.append(cast)
-                        
-                        self.detailsTableView.reloadData()
-                    }
-                    
-                    for crew in json["crew"].arrayValue {
-                        let profilePath = crew["profile_path"].stringValue
-                        let name = crew["name"].stringValue
-                        let job = crew["job"].stringValue
-                        
-                        let crew = CastModel(profilePath: profilePath, name: name, character: job)
-                        
-                        self.crew.append(crew)
-                        
-                        self.detailsTableView.reloadData()
-                    }
-                    
-                case .failure(let error):
-                    print(error)
-            }
+        TMDBAPIManager.shared.fetchCredits(media: media) { cast, crew in
+            self.cast.append(contentsOf: cast)
+            self.crew.append(contentsOf: crew)
+            self.detailsTableView.reloadData()
         }
     }
 }
