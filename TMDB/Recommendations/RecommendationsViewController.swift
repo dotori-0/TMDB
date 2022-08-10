@@ -38,6 +38,7 @@ extension RecommendationsViewController: UITableViewDataSource, UITableViewDeleg
         cell.backgroundColor = .systemGreen
         cell.posterCollectionView.dataSource = self
         cell.posterCollectionView.delegate = self
+        print("🫐 테이블뷰 cell.posterCollectionView.frame.height: \(cell.posterCollectionView.frame.height)")
         cell.posterCollectionView.register(UINib(nibName: NibName.posterCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: PosterCollectionViewCell.reuseIdentifier)
 //        print("컬렉션뷰 높이: \(cell.posterCollectionView.frame.height)")
 //        print("컬렉션뷰 컨텐트 사이즈 높이: \(cell.posterCollectionView.collectionViewLayout.collectionViewContentSize.height)")
@@ -46,6 +47,15 @@ extension RecommendationsViewController: UITableViewDataSource, UITableViewDeleg
 //        print("\(cell.frame.height)")
 //        cellFrameHeight = cell.frame.height
 //        print("cell.contentView.frame.height: \(cell.contentView.frame.height)")
+        
+//        cell.posterCollectionView.collectionViewLayout = cell.collectionViewLayout()
+//        tableView.reloadData()
+        
+        
+        
+        // 여기에서 레이아웃 주면 적용이 안되지만 가로스크롤 문제 없음
+//        cell.posterCollectionView.collectionViewLayout = getLayout(collectionView: cell.posterCollectionView)
+        
         
         
         return cell
@@ -57,15 +67,17 @@ extension RecommendationsViewController: UITableViewDataSource, UITableViewDeleg
 //        return UIScreen.main.bounds.height / 4.5
 //        return 190
 
-        print("tableView.rowHeight: \(tableView.frame.height)")
+//        print("tableView.rowHeight: \(tableView.frame.height)")
 //        return tableView.rowHeight
 //        return cellFrameHeight + collectionViewItemHeight
         
 //        return UITableView.automaticDimension
         
-        let tableViewCellHeightExceptCollectionView = 53.0
-        let collectionViewItemHeight = UIScreen.main.bounds.width / 3.2 * 1.414
-        return tableViewCellHeightExceptCollectionView + collectionViewItemHeight + 8
+//        let tableViewCellHeightExceptCollectionView = 53.0
+//        let collectionViewItemHeight = UIScreen.main.bounds.width / 3.2 * 1.414
+//        return tableViewCellHeightExceptCollectionView + collectionViewItemHeight + 8
+        print("🥭", #function)
+        return UIScreen.main.bounds.height / 4
     }
 }
 
@@ -81,9 +93,55 @@ extension RecommendationsViewController: UICollectionViewDataSource, UICollectio
             return UICollectionViewCell()
         }
         
+        print("🐶 컬렉션뷰 cell.frame.height: \(cell.frame.height)")
+        cell.layer.borderColor = UIColor.red.cgColor
+        cell.layer.borderWidth = 10
+        
+//        collectionView.reloadData()
+//        recommendationsTableView.reloadData()
+    
+        // 여기에서 레이아웃 주면 적용이 되지만 가로스크롤 하면 PosterView instantiate에서 BAD ACCESS 에러
+        // 에러가 나는 이유?
+//        collectionView.collectionViewLayout = getLayout(collectionView: collectionView)
+
+        
         return cell
     }
-    
-    
+}
 
+
+// ➕📎 RecommendationsTableViewCell에서 나머지 레이아웃 적용하고 아이템사이즈를 DelegateFlowLayout으로 적용하면
+// 아이템사이즈 적용되고 런타임 오류도 없음
+extension RecommendationsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = collectionView.frame.height
+        let width = height / 1.414
+        
+        return CGSize(width: width, height: height)
+    }
+}
+
+
+
+
+func getLayout(collectionView: UICollectionView) -> UICollectionViewFlowLayout {
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .horizontal
+    layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    
+//        let width = UIScreen.main.bounds.width / 3.2
+//        let height = width * 1.414
+    let height = collectionView.frame.height
+//        let height = UIScreen.main.bounds.height / 4.2
+//    print("💎 테이블뷰셀 posterCollectionView.frame.height: \(posterCollectionView.frame.height)")
+    let width = height / 1.414
+    layout.itemSize = CGSize(width: width, height: height)
+    
+//        collectionViewItemHeight = height
+
+    layout.minimumLineSpacing = 8
+    layout.minimumInteritemSpacing = 0
+    
+    
+    return layout
 }

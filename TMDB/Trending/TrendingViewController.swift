@@ -41,12 +41,21 @@ class TrendingViewController: UIViewController {
         
         trendingCollectionView.register(UINib(nibName: TrendingCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: TrendingCollectionViewCell.reuseIdentifier)
         
-        print("CollectionView-masksToBounds", trendingCollectionView.layer.masksToBounds)
-        print("CollectionView-clipsToBounds", trendingCollectionView.clipsToBounds)
+//        print("CollectionView-masksToBounds", trendingCollectionView.layer.masksToBounds)  // false
+//        print("CollectionView-clipsToBounds", trendingCollectionView.clipsToBounds)        // false
 
         configureCollectionViewLayout()
         
         fetchData()
+//        TMDBAPIManager.shared.fetchData(page: page) { mediaArray in
+//            print("self.mediaArray.count: \(self.mediaArray.count)")
+//            self.mediaArray = mediaArray
+//            print("self.mediaArray.count: \(self.mediaArray.count)")
+//
+//            self.trendingCollectionView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))  // 여기에서 hide 하지 않으면 스크롤 불가
+//
+//            self.trendingCollectionView.reloadData()
+//        }
     }
     
 //    override func viewDidAppear(_ animated: Bool) {
@@ -75,57 +84,16 @@ class TrendingViewController: UIViewController {
     
     
     func fetchData() {
-        print("fetchData starting")
-//        let text = "과자".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!  // 옵셔널이기 때문에 타입 어노테이션이나 가드구문 등으로 처리
-        let url = Endpoint.trendingURL + APIKey.TMDB + "&page=\(page)"
-        
-//        let headers: HTTPHeaders = ["X-Naver-Client-Id": APIKey.NAVER_ID, "X-Naver-Client-Secret": APIKey.NAVER_SECRET]
-//        let parameters = [
-        
-        AF.request(url, method: .get).validate(statusCode: 200..<400).responseData { response in
-            switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-//                    print("JSON: \(json)")
-                    
-                    // json["results"].arrayValue는 배열, 배열 내의 요소는 모두 딕셔너리
-//                    print(json["results"])  // .arrayValue 하지 않아도 되는 이유?
-                    
-                    for result in json["results"].arrayValue {
-                        let mediaType = result["media_type"].stringValue
-                        let title = mediaType == "movie" ? result["title"].stringValue : result["name"].stringValue
-                        let id = result["id"].intValue
-                        let backdropPath = result["backdrop_path"].stringValue
-//                        guard let genreIDs = result["genre_ids"].arrayValue as? [Int] else {
-//                            print("실패")
-//                            return
-//                        }
-//                        print(genreIDs)
-//                        print(type(of: genreIDs))
-                        let posterPath = result["poster_path"].stringValue
-                        let genreID = result["genre_ids"][0].intValue
-//                        print("genreID", genreID)
-                        let releaseDate = result["release_date"].stringValue
-                        
-                        let voteAverage = result["vote_average"].doubleValue
-                        let overview = result["overview"].stringValue
-
-                        let mediaModel = MediaModel(title: title, mediaType: mediaType, id: id, backdropPath: backdropPath, posterPath: posterPath, genreID: genreID, releaseDate: releaseDate, voteAverage: voteAverage, overview: overview)
-                        self.mediaArray.append(mediaModel)
-
-//                        print(self.mediaArray.count)
-
-//                        self.trendingCollectionView.stopSkeletonAnimation()
-                        self.trendingCollectionView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))  // 여기에서 hide 하지 않으면 스크롤 불가
-                        
-                        self.trendingCollectionView.reloadData()
-                    }
-                    
-                case .failure(let error):
-                    print(error)
-            }
+        print(#function, page)
+        TMDBAPIManager.shared.fetchData(page: page) { mediaArray in
+            print("self.mediaArray.count: \(self.mediaArray.count)")
+            self.mediaArray.append(contentsOf: mediaArray)
+            print("self.mediaArray.count: \(self.mediaArray.count)")
+            
+            self.trendingCollectionView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))  // 여기에서 hide 하지 않으면 스크롤 불가
+                                    
+            self.trendingCollectionView.reloadData()
         }
-        print("fetchData ending")
     }
     
     
@@ -175,10 +143,10 @@ extension TrendingViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.backdropImageView.kf.setImage(with: url) { result in
             switch result {
                 case .success:
-                    print("🍒 성공")
+//                    print("🍒 성공")
 //                    self.trendingCollectionView.hideSkeleton()
                     cell.backdropImageView.hideSkeleton()
-                    print("🍒 성공")
+//                    print("🍒 성공")
                 case .failure(let error):
                     print(error)
             }
