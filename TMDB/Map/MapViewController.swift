@@ -80,7 +80,7 @@ class MapViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
 //        let megabox = UIAlertAction(title: CinemaType.메가박스.rawValue, style: .default) { _ in
-//            self.setAnnotations(cinemaType: CinemaType(rawValue: title!)!)
+//            self.setAnnotations(cinemaType: CinemaType(rawValue: title!)!)  // 🍒 title 활용할 수 없을지?
 //        }
 //
 //        let lotteCinema = UIAlertAction(title: CinemaType.롯데시네마.rawValue, style: .default) { _ in
@@ -95,30 +95,38 @@ class MapViewController: UIViewController {
 //            self.setAnnotations(cinemaType: CinemaType(rawValue: self.title!)!)
 //        }
         
-        let megabox = UIAlertAction(title: CinemaType.메가박스.rawValue, style: .default) { _ in
-            self.setAnnotations(cinemaType: .메가박스)
-        }
-
-        let lotteCinema = UIAlertAction(title: CinemaType.롯데시네마.rawValue, style: .default) { _ in
-            self.setAnnotations(cinemaType: .롯데시네마)
-        }
-
-        let cgv = UIAlertAction(title: CinemaType.CGV.rawValue, style: .default) { _ in
-            self.setAnnotations(cinemaType: .CGV)
-        }
-
-        let seeAll = UIAlertAction(title: CinemaType.all.rawValue, style: .default) { _ in
-            self.setAnnotations(cinemaType: .all)
+//        let megabox = UIAlertAction(title: CinemaType.메가박스.rawValue, style: .default) { _ in
+//            self.setAnnotations(cinemaType: .메가박스)
+//        }
+//
+//        let lotteCinema = UIAlertAction(title: CinemaType.롯데시네마.rawValue, style: .default) { _ in
+//            self.setAnnotations(cinemaType: .롯데시네마)
+//        }
+//
+//        let cgv = UIAlertAction(title: CinemaType.CGV.rawValue, style: .default) { _ in
+//            self.setAnnotations(cinemaType: .CGV)
+//        }
+//
+//        let seeAll = UIAlertAction(title: CinemaType.all.rawValue, style: .default) { _ in
+//            self.setAnnotations(cinemaType: .all)
+//        }
+        
+        for type in CinemaType.allCases {
+            let action = UIAlertAction(title: type.rawValue, style: .default) { _ in
+                self.setAnnotations(cinemaType: type)
+            }
+            
+            alert.addAction(action)
         }
         
         let cancel = UIAlertAction(title: "취소", style: .cancel) { _ in
 //            self.removeAllAnnotations()
         }
     
-        alert.addAction(megabox)
-        alert.addAction(lotteCinema)
-        alert.addAction(cgv)
-        alert.addAction(seeAll)
+//        alert.addAction(megabox)
+//        alert.addAction(lotteCinema)
+//        alert.addAction(cgv)
+//        alert.addAction(seeAll)
         alert.addAction(cancel)
         
         present(alert, animated: true)

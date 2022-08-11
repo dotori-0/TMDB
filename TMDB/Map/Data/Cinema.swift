@@ -28,7 +28,7 @@ struct CinemaList {
 }
 
 
-enum CinemaType: String {
+enum CinemaType: String, CaseIterable {
     case 롯데시네마
     case 메가박스
     case CGV
