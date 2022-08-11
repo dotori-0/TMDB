@@ -18,7 +18,7 @@ class RecommendationsViewController: UIViewController {
     var cellFrameHeight = 0.0
     
     var movieIDs = [
-        725201,  // The Gray Man
+        725201,   // The Gray Man
         361743,   // Top Gun: Maverick
         438631,   // Dune
         391713,   // Lady Bird
@@ -40,16 +40,19 @@ class RecommendationsViewController: UIViewController {
         recommendationsTableView.separatorStyle = .none
         recommendationsTableView.allowsSelection = false
         
-//        TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: 725201) { title, posterPaths in
-//        }
+        //        TMDBAPIManager.shared.fetchDetailsAndRecommendations(movieID: 725201) { title, posterPaths in
+        //        }
         // 1. 네트워크 통신   2. 배열 생성   3. 배열에 담기
         // 4. 뷰에 표현 (ex. 테이블뷰 섹션, 컬렉션 뷰 셀)
         // 5. 뷰 갱신!
         TMDBAPIManager.shared.callRequestsForDetailsAndRecommendations(movieIDs: movieIDs) { titlesAndPosterPaths in
-            self.titlesAndPosterPaths.append(contentsOf: titlesAndPosterPaths)
-//            print(self.titlesAndPosterPaths)
-//            print(self.titlesAndPosterPaths.count)
-            self.recommendationsTableView.reloadData()
+            DispatchQueue.main.async {
+                self.titlesAndPosterPaths.append(contentsOf: titlesAndPosterPaths)
+                // print(self.titlesAndPosterPaths)
+                // print(self.titlesAndPosterPaths.count)
+                self.recommendationsTableView.reloadData()
+                
+            }
         }
     }
 }
@@ -138,6 +141,7 @@ extension RecommendationsViewController: UICollectionViewDataSource, UICollectio
         
         let url = URL(string: "\(Endpoint.imageConfigurationURL)\(titlesAndPosterPaths[collectionView.tag].1[indexPath.item])")
         cell.posterView.posterImageView.kf.setImage(with: url)
+        cell.posterView.posterImageView.contentMode = .scaleAspectFill
         cell.posterView.titleLabel.isHidden = true
         
 //        collectionView.reloadData()

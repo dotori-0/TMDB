@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0161D528A530410069C4AF /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0161D428A530410069C4AF /* Map.storyboard */; };
+		0A0161D728A533E30069C4AF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0161D628A533E30069C4AF /* MapViewController.swift */; };
+		0A0161DA28A53EA40069C4AF /* Cinema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0161D928A53EA40069C4AF /* Cinema.swift */; };
 		0A0EC35E289BDD98005DC884 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EC35D289BDD98005DC884 /* DetailsViewController.swift */; };
 		0A0EC362289BF5D2005DC884 /* OverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EC360289BF5D2005DC884 /* OverviewTableViewCell.swift */; };
 		0A0EC363289BF5D2005DC884 /* OverviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0EC361289BF5D2005DC884 /* OverviewTableViewCell.xib */; };
@@ -51,6 +54,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A0161D428A530410069C4AF /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		0A0161D628A533E30069C4AF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0A0161D928A53EA40069C4AF /* Cinema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cinema.swift; sourceTree = "<group>"; };
 		0A0EC35D289BDD98005DC884 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		0A0EC360289BF5D2005DC884 /* OverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTableViewCell.swift; sourceTree = "<group>"; };
 		0A0EC361289BF5D2005DC884 /* OverviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverviewTableViewCell.xib; sourceTree = "<group>"; };
@@ -107,6 +113,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A0161D328A5302D0069C4AF /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				0A0161D828A53E9B0069C4AF /* Data */,
+				0A0161D428A530410069C4AF /* Map.storyboard */,
+				0A0161D628A533E30069C4AF /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		0A0161D828A53E9B0069C4AF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0A0161D928A53EA40069C4AF /* Cinema.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		0A0EC35F289BF58E005DC884 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +202,7 @@
 				0A130A182899F72D00B1CCB5 /* Main.storyboard */,
 				0A62E534289AB64100951038 /* Trending */,
 				0A10473E28A286B10095CB80 /* Recommendations */,
+				0A0161D328A5302D0069C4AF /* Map */,
 				0A10474928A28E0A0095CB80 /* Views */,
 				0A62E540289ABC1C00951038 /* Extensions */,
 				0A62E541289ABC3800951038 /* Protocols */,
@@ -192,8 +217,8 @@
 		0A130A312899FA9E00B1CCB5 /* Key */ = {
 			isa = PBXGroup;
 			children = (
-				0A130A322899FAAB00B1CCB5 /* Example.swift */,
 				0A130A2A2899F88D00B1CCB5 /* APIKey.swift */,
+				0A130A322899FAAB00B1CCB5 /* Example.swift */,
 			);
 			path = Key;
 			sourceTree = "<group>";
@@ -347,6 +372,7 @@
 				0A8F41B9289C07D900AC4B96 /* CreditsTableViewCell.xib in Resources */,
 				0A130A1C2899F72D00B1CCB5 /* Assets.xcassets in Resources */,
 				0A130A1A2899F72D00B1CCB5 /* Main.storyboard in Resources */,
+				0A0161D528A530410069C4AF /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,12 +385,14 @@
 			files = (
 				0A10474728A28B490095CB80 /* RecommendationsTableViewCell.swift in Sources */,
 				0A0EC362289BF5D2005DC884 /* OverviewTableViewCell.swift in Sources */,
+				0A0161DA28A53EA40069C4AF /* Cinema.swift in Sources */,
 				0A7ADC40289FBD4B00A32A39 /* WebViewController.swift in Sources */,
 				0A62E545289ABCFC00951038 /* UIViewController+Extension.swift in Sources */,
 				0A62E547289ABD4D00951038 /* UICollectionViewCell+Extension.swift in Sources */,
 				0A10474F28A28E620095CB80 /* PosterView.swift in Sources */,
 				0A10474128A2872B0095CB80 /* RecommendationsViewController.swift in Sources */,
 				0A130A332899FAAB00B1CCB5 /* Example.swift in Sources */,
+				0A0161D728A533E30069C4AF /* MapViewController.swift in Sources */,
 				0A10475528A295D50095CB80 /* PosterCollectionViewCell.swift in Sources */,
 				0A130A132899F72D00B1CCB5 /* AppDelegate.swift in Sources */,
 				0A6E56AE28A3B15D00771AA1 /* Endpoint.swift in Sources */,

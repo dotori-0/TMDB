@@ -183,7 +183,7 @@ class TMDBAPIManager {
         // https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&append_to_response=recommendations  // &language=en-US&page=1
         let url = Endpoint.getMovieDetailsAndRecommendationsURL(movieID: movieID)
         
-        AF.request(url, method: .get).validate(statusCode: 200..<400).responseData { response in
+        AF.request(url, method: .get).validate(statusCode: 200..<400).responseData(queue: .global()) { response in
             switch response.result {
                 case .success(let value):
                     let json = JSON(value)

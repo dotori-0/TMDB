@@ -8,11 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Trending-->
         <scene sceneID="G0j-Fb-V4c">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OBk-HN-ZGn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="PJc-YH-EG4"/>
+                    <tabBarItem key="tabBarItem" title="Trending" selectedImage="heart" catalog="system" id="PJc-YH-EG4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4jf-9l-dmO">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -25,7 +25,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GAd-Lw-kyM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="973.91304347826099" y="83.705357142857139"/>
+            <point key="canvasLocation" x="1001" y="-259"/>
         </scene>
         <!--Trending-->
         <scene sceneID="tne-QT-ifu">
@@ -68,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1884.057971014493" y="83.705357142857139"/>
+            <point key="canvasLocation" x="1912" y="-259"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="RnV-54-1I4">
@@ -139,8 +139,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="t3T-bR-bqw" kind="relationship" relationship="viewControllers" id="bL4-3C-Gar"/>
                         <segue destination="o4S-mh-Tnc" kind="relationship" relationship="viewControllers" id="K7C-ik-q6C"/>
-                        <segue destination="OBk-HN-ZGn" kind="relationship" relationship="viewControllers" id="tCW-rc-1Ai"/>
+                        <segue destination="OBk-HN-ZGn" kind="relationship" relationship="viewControllers" id="V3x-fQ-q1T"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YfM-EY-FGZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -155,11 +156,22 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVh-Z8-b8M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="805" y="702"/>
+            <point key="canvasLocation" x="848" y="449"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="uKJ-84-BYU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Map" id="t3T-bR-bqw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="xNW-BT-KVJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kKO-V9-Z9O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="863" y="705"/>
         </scene>
     </scenes>
     <resources>
         <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="101"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="list.triangle" catalog="system" width="128" height="91"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
