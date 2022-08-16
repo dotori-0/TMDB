@@ -7,7 +7,7 @@
 //import CoreLocation
 import MapKit
 import UIKit
-import SwiftUI
+
 
 class MapViewController: UIViewController {
 
@@ -166,15 +166,15 @@ extension MapViewController {
     func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
             case .notDetermined:
-                print("Not Determined")  // 🍒 iOS 14 정확한 위치
+                print("Not Determined")  // 🍒 iOS 14 정확한 위치 적용해 보기
                 locationManager.desiredAccuracy = kCLLocationAccuracyBest
                 locationManager.requestWhenInUseAuthorization()
             case .restricted:
                 print("Restricted")
             case .denied:
-                print("denied")  // 🍒 설정으로 유도
+                print("Denied")  // 🍒 설정으로 유도
             case .authorizedWhenInUse:
-                print("When in Use")  // 🍒 startUpdatingLocation()  // 🍒 항상 허용 요청
+                print("When in Use")  // 🍒 항상 허용 요청
                 locationManager.startUpdatingLocation()
 //            case .authorizedAlways:
 //            case .authorized:  // Deprecated
@@ -212,5 +212,4 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function)  // 🍒 얼럿 띄우기
     }
-
 }

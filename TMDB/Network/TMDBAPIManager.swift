@@ -31,34 +31,62 @@ class TMDBAPIManager {
                     let json = JSON(value)
 //                    print("JSON: \(json)")
                     
-                    // json["results"].arrayValue는 배열, 배열 내의 요소는 모두 딕셔너리
-//                    print(json["results"])  // .arrayValue 하지 않아도 되는 이유?
-                    
                     // for-loop
-                    for result in json["results"].arrayValue {
-                        let mediaType = result["media_type"].stringValue
-                        let title = mediaType == "movie" ? result["title"].stringValue : result["name"].stringValue
-                        let id = result["id"].intValue
-                        let backdropPath = result["backdrop_path"].stringValue
-                        let posterPath = result["poster_path"].stringValue
-                        let genreID = result["genre_ids"][0].intValue
-//                        print("genreID", genreID)
-                        let releaseDate = result["release_date"].stringValue
-                        
-                        let voteAverage = result["vote_average"].doubleValue
-                        let overview = result["overview"].stringValue
-                        
-
-                        let mediaModel = MediaModel(title: title, mediaType: mediaType, id: id, backdropPath: backdropPath, posterPath: posterPath, genreID: genreID, releaseDate: releaseDate, voteAverage: voteAverage, overview: overview)
-                        mediaArray.append(mediaModel)
-                        
-                        
-//                        self.trendingCollectionView.stopSkeletonAnimation()
-//                        self.trendingCollectionView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))  // 여기에서 hide 하지 않으면 스크롤 불가
-//                        self.trendingCollectionView.reloadData()
-                    }
+//                    for result in json["results"].arrayValue {
+//                        let mediaType = result["media_type"].stringValue
+//                        let title = mediaType == "movie" ? result["title"].stringValue : result["name"].stringValue
+//                        let id = result["id"].intValue
+//                        let backdropPath = result["backdrop_path"].stringValue
+//                        let posterPath = result["poster_path"].stringValue
+//                        let genreID = result["genre_ids"][0].intValue
+////                        print("genreID", genreID)
+//                        let releaseDate = result["release_date"].stringValue
+//                        let voteAverage = result["vote_average"].doubleValue
+//                        let overview = result["overview"].stringValue
+//
+//
+//                        let mediaModel = MediaModel(title: title, mediaType: mediaType, id: id, backdropPath: backdropPath, posterPath: posterPath, genreID: genreID, releaseDate: releaseDate, voteAverage: voteAverage, overview: overview)
+//                        mediaArray.append(mediaModel)
+//
+//
+////                        self.trendingCollectionView.stopSkeletonAnimation()
+////                        self.trendingCollectionView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))  // 여기에서 hide 하지 않으면 스크롤 불가
+////                        self.trendingCollectionView.reloadData()
+//                    }
                     
                     // map
+                    mediaArray = json["results"].arrayValue.map { result in
+                        let mediaType = result["media_type"].stringValue
+                        
+                        let mediaModel = MediaModel(
+                                            title: mediaType == "movie" ? result["title"].stringValue : result["name"].stringValue,
+                                            mediaType: mediaType,
+                                            id: result["id"].intValue,
+                                            backdropPath: result["backdrop_path"].stringValue,
+                                            posterPath: result["poster_path"].stringValue,
+                                            genreID: result["genre_ids"][0].intValue,
+                                            releaseDate: result["release_date"].stringValue,
+                                            voteAverage: result["vote_average"].doubleValue,
+                                            overview: result["overview"].stringValue
+                                        )
+//                        mediaArray.append(mediaModel)
+                        print("🤍", mediaModel)
+                        return mediaModel
+                    }
+                    
+//                    mediaArray = json["results"].arrayValue.map {
+//                        MediaModel(
+//                            title: mediaType == "movie" ? $0["title"].stringValue : $0["name"].stringValue,
+//                            mediaType: result["media_type"].stringValue,
+//                            id: <#T##Int#>,
+//                            backdropPath: <#T##String#>,
+//                            posterPath: <#T##String#>,
+//                            genreID: <#T##Int#>,
+//                            releaseDate: <#T##String#>,
+//                            voteAverage: <#T##Double#>,
+//                            overview: <#T##String#>
+//                        )
+//                    }
                     
                     
                     completionHandler(mediaArray)
