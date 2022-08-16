@@ -29,7 +29,6 @@
 		0A130A1F2899F72D00B1CCB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A130A1D2899F72D00B1CCB5 /* LaunchScreen.storyboard */; };
 		0A130A272899F7D300B1CCB5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0A130A262899F7D300B1CCB5 /* .gitignore */; };
 		0A130A2B2899F88D00B1CCB5 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A130A2A2899F88D00B1CCB5 /* APIKey.swift */; };
-		0A130A332899FAAB00B1CCB5 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A130A322899FAAB00B1CCB5 /* Example.swift */; };
 		0A60F068289FBE05008538AF /* Web.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A60F067289FBE05008538AF /* Web.storyboard */; };
 		0A62E532289AB63A00951038 /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62E530289AB63A00951038 /* TrendingCollectionViewCell.swift */; };
 		0A62E533289AB63A00951038 /* TrendingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A62E531289AB63A00951038 /* TrendingCollectionViewCell.xib */; };
@@ -78,7 +77,6 @@
 		0A130A202899F72D00B1CCB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A130A262899F7D300B1CCB5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		0A130A2A2899F88D00B1CCB5 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
-		0A130A322899FAAB00B1CCB5 /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 		0A60F067289FBE05008538AF /* Web.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Web.storyboard; sourceTree = "<group>"; };
 		0A62E530289AB63A00951038 /* TrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		0A62E531289AB63A00951038 /* TrendingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				0A130A2A2899F88D00B1CCB5 /* APIKey.swift */,
-				0A130A322899FAAB00B1CCB5 /* Example.swift */,
 			);
 			path = Key;
 			sourceTree = "<group>";
@@ -391,7 +388,6 @@
 				0A62E547289ABD4D00951038 /* UICollectionViewCell+Extension.swift in Sources */,
 				0A10474F28A28E620095CB80 /* PosterView.swift in Sources */,
 				0A10474128A2872B0095CB80 /* RecommendationsViewController.swift in Sources */,
-				0A130A332899FAAB00B1CCB5 /* Example.swift in Sources */,
 				0A0161D728A533E30069C4AF /* MapViewController.swift in Sources */,
 				0A10475528A295D50095CB80 /* PosterCollectionViewCell.swift in Sources */,
 				0A130A132899F72D00B1CCB5 /* AppDelegate.swift in Sources */,

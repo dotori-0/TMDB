@@ -14,7 +14,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var filterBarButton: UIBarButtonItem!
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
@@ -28,12 +28,12 @@ class MapViewController: UIViewController {
         setAnnotations(cinemaType: CinemaType.all)
     }
     
-    func setRegion(center: CLLocationCoordinate2D) {
+    private func setRegion(center: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
     }
     
-    func setAnnotations(cinemaType: CinemaType) {
+    private func setAnnotations(cinemaType: CinemaType) {
         removeAllAnnotations()
         
 //        let coordinates = CinemaList.mapAnnotations.map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
@@ -71,12 +71,12 @@ class MapViewController: UIViewController {
     }
     
     
-    func removeAllAnnotations() {
+    private func removeAllAnnotations() {
         mapView.removeAnnotations(mapView.annotations)
     }
     
     
-    func showActionSheet() {
+    private func showActionSheet() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
 //        let megabox = UIAlertAction(title: CinemaType.메가박스.rawValue, style: .default) { _ in
@@ -142,7 +142,7 @@ class MapViewController: UIViewController {
 // 위치 관련 메서드
 extension MapViewController {
     // iOS 위치 서비스 활성화 여부 확인
-    func checkUserDeviceLocationServiceAuthorization() {
+    private func checkUserDeviceLocationServiceAuthorization() {
         let authorizationStatus: CLAuthorizationStatus
         
         // Location Manager의 authorization status
@@ -163,7 +163,7 @@ extension MapViewController {
     }
     
     
-    func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
+    private func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
             case .notDetermined:
                 print("Not Determined")  // 🍒 iOS 14 정확한 위치 적용해 보기

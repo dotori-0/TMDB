@@ -18,13 +18,13 @@ class TrendingViewController: UIViewController {
     
     @IBOutlet weak var trendingCollectionView: UICollectionView!
     
-    var mediaArray: [MediaModel] = []
+    private var mediaArray: [MediaModel] = []
     
-    var selectedMediaType: String?
-    var selectedMediaID: Int?
+    private var selectedMediaType: String?
+    private var selectedMediaID: Int?
     
-    var page = 1
-    var offsetLimit: CGFloat = 8000
+    private var page = 1
+    private var offsetLimit: CGFloat = 8000
     
 
     override func viewDidLoad() {
@@ -66,7 +66,7 @@ class TrendingViewController: UIViewController {
 //    }
     
     
-    func configureCollectionViewLayout() {
+    private func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = UIScreen.main.bounds.width * 0.02
         let horizontalInset: CGFloat = 20
@@ -83,7 +83,7 @@ class TrendingViewController: UIViewController {
     }
     
     
-    func fetchData() {
+    private func fetchData() {
         print(#function, page)
         TMDBAPIManager.shared.fetchData(page: page) { mediaArray in
             print("self.mediaArray.count: \(self.mediaArray.count)")
@@ -99,7 +99,7 @@ class TrendingViewController: UIViewController {
     
     @objc
 //    func openWebView(mediaType: String, mediaID: Int) {
-    func openWebView() {
+    private func openWebView() {
         let sb = UIStoryboard(name: "Web", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else {
             print("Cannot find WebViewController")

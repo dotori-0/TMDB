@@ -14,10 +14,10 @@ class RecommendationsViewController: UIViewController {
 
     @IBOutlet weak var recommendationsTableView: UITableView!
     
-    var collectionViewItemHeight = 0.0
-    var cellFrameHeight = 0.0
+//    var collectionViewItemHeight = 0.0
+//    var cellFrameHeight = 0.0
     
-    var movieIDs = [
+    private var movieIDs = [
         725201,   // The Gray Man
         361743,   // Top Gun: Maverick
         438631,   // Dune
@@ -27,7 +27,7 @@ class RecommendationsViewController: UIViewController {
         83666     // Moonrise Kingdom
     ]
     
-    var titlesAndPosterPaths: [(String, [String])] = []
+    private var titlesAndPosterPaths: [(String, [String])] = []
     
     
     override func viewDidLoad() {

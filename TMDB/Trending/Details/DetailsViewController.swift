@@ -20,8 +20,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var detailsTableView: UITableView!
     
     var media: MediaModel?
-    var cast: [CastModel] = []
-    var crew: [CastModel] = []
+    private var cast: [CastModel] = []
+    private var crew: [CastModel] = []
     
 //    enum isFolded {
 //        static var value = true {
@@ -59,7 +59,7 @@ class DetailsViewController: UIViewController {
 //        configureHeaderView()
     }
     
-    func configureHeaderView() {
+    private func configureHeaderView() {
         titleLabel.text = media?.title
         titleLabel.textColor = .white
         titleLabel.font = .boldSystemFont(ofSize: 28)
@@ -78,7 +78,7 @@ class DetailsViewController: UIViewController {
     }
     
     
-    func fetchCredits() {
+    private func fetchCredits() {
         guard let media = self.media != nil ? self.media : nil else {  // 맞는 구문인지..? data가 nil일 경우 guard let으로 처리하는 방법?
             print("Cannot find media.")
             return

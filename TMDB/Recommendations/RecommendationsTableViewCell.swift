@@ -12,7 +12,7 @@ class RecommendationsTableViewCell: UITableViewCell {
     @IBOutlet weak var rowTitleLabel: UILabel!
     @IBOutlet weak var posterCollectionView: UICollectionView!
     
-    var collectionViewItemHeight = 0.0
+//    var collectionViewItemHeight = 0.0
     
     
     override func awakeFromNib() {
@@ -23,13 +23,13 @@ class RecommendationsTableViewCell: UITableViewCell {
     }
 
     
-    func designLabel() {
+    private func designLabel() {
         rowTitleLabel.textColor = .label
         rowTitleLabel.font = .boldSystemFont(ofSize: 18)
 //        print("👻 rowTitleLabel.frame.height: \(rowTitleLabel.frame.height)")
     }
     
-    func collectionViewLayout() -> UICollectionViewFlowLayout {
+    private func collectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)

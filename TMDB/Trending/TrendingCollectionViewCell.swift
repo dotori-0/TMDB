@@ -68,7 +68,7 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func designTrailerButton() {
+    private func designTrailerButton() {
         trailerButton.setTitle("", for: .normal)
         trailerButton.tintColor = .white
 //        trailerButton.backgroundColor = .systemMint
@@ -88,7 +88,7 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         trailerButton.layer.shadowOpacity = 0.5
     }
     
-    func configureShadowForContainerView() {
+    private func configureShadowForContainerView() {
 //        print("🐶")
 //        print(containerView.layer.masksToBounds)  // false
         containerView.layer.shadowColor = UIColor.gray.cgColor

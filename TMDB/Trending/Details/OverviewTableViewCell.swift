@@ -14,7 +14,7 @@ class OverviewTableViewCell: UITableViewCell {
     @IBOutlet weak var showAndHideButton: UIButton!
     
     var overview: String?
-    var isCollapsed = true
+    private var isCollapsed = true
     
     
     func configureOverviewLabel() {
@@ -29,15 +29,15 @@ class OverviewTableViewCell: UITableViewCell {
         configureButtonImage()
     }
     
-    func configureButtonImage() {
+    private func configureButtonImage() {
         showAndHideButton.setImage(UIImage(systemName: isCollapsed ? "chevron.down" : "chevron.up"), for: .normal)
     }
     
-    func configureOverviewLabelLines() {
+    private func configureOverviewLabelLines() {
         overviewLabel.numberOfLines = isCollapsed ? 2 : 0
     }
     
-    @IBAction func foldButtonClicked(_ sender: UIButton) {
+    @IBAction private func foldButtonClicked(_ sender: UIButton) {
         print(#function)
         isCollapsed.toggle()
         configureButtonImage()

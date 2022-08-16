@@ -31,5 +31,4 @@ class CreditsTableViewCell: UITableViewCell {
         characterLabel.textColor = .lightGray
         characterLabel.font = .systemFont(ofSize: 16.5)
     }
-
 }

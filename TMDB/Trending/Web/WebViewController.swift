@@ -23,7 +23,7 @@ class WebViewController: UIViewController {
     var mediaType: String?
     var mediaID: Int?
     
-    let hud = JGProgressHUD()
+    private let hud = JGProgressHUD()
     
     
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class WebViewController: UIViewController {
     }
     
     
-    func fetchVideo() {
+    private func fetchVideo() {
         // ❓ guard let 구문으로 nil이 아닐 경우에 옵셔널 해제(?)하는 방법?
         hud.show(in: view, animated: true)
         guard let mediaType = self.mediaType != nil ? self.mediaType : nil else {  // 맞는 구문인지..? data가 nil일 경우 guard let으로 처리하는 방법?
@@ -57,7 +57,7 @@ class WebViewController: UIViewController {
     }
 
     
-    func openWebPage(url: String) {
+    private func openWebPage(url: String) {
         guard let url = URL(string: url) else {
             print("Ivalid URL")
             return
