@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ReusableProtocol {
-    static var reuseIdentifier: String { get }
-}
+//protocol ReusableProtocol {
+//    static var reuseIdentifier: String { get }
+//}

@@ -7,8 +7,8 @@
 
 import UIKit
 
-extension UIViewController: ReusableProtocol {
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
-}
+//extension UIViewController: ReusableProtocol {
+//    static var reuseIdentifier: String {
+//        return String(describing: self)
+//    }
+//}

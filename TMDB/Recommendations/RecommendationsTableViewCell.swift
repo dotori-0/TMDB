@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class RecommendationsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var rowTitleLabel: UILabel!

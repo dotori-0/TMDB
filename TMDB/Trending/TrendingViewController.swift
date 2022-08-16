@@ -8,6 +8,7 @@
 import UIKit
 
 import Alamofire
+import HelpersFramework
 //import SkeletonView
 import Kingfisher
 import SwiftyJSON
